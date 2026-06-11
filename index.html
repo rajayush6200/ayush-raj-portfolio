@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="description" content="Ayush Raj — Full-Stack Developer. Building scalable web applications with modern technologies. Portfolio showcasing software engineering projects.">
+      <meta name="theme-color" content="#07070f">
+
+      <!--=============== FAVICON ===============-->
+      <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+
+      <!--=============== GOOGLE FONTS ===============-->
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+      <!--=============== REMIXICONS ===============-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+
+      <!--=============== SWIPER CSS ===============-->
+      <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+
+      <!--=============== CSS ===============-->
+      <link rel="stylesheet" href="assets/css/styles.css">
+
+      <title>Ayush Raj — Full-Stack Developer</title> 
+   </head>
+   <body>
+      <!--==================== HEADER ====================-->
+      <header class="header" id="header">
+         <nav class="nav container">
+            <a href="#" class="nav__logo">Ayush</a>
+
+            <div class="nav__menu" id="nav-menu">
+               <ul class="nav__list">
+                  <li class="nav__item">
+                     <a href="#about" class="nav__link">About</a>
+                  </li>
+                  <li class="nav__item">
+                     <a href="#projects" class="nav__link">Projects</a>
+                  </li>
+                  <li class="nav__item">
+                     <a href="#skills" class="nav__link">Skills</a>
+                  </li>
+                  <li class="nav__item">
+                     <a href="#certifications" class="nav__link">Certifications</a>
+                  </li>
+                  <li class="nav__item">
+                     <a href="#contact" class="nav__link">Contact</a>
+                  </li>
+               </ul>
+
+               <!-- Close button -->
+               <div class="nav__close" id="nav-close">
+                  <i class="ri-close-line"></i>
+               </div>
+            </div>
+
+            <!-- Toggle button -->
+            <div class="nav__toggle" id="nav-toggle">
+               <i class="ri-menu-line"></i>
+            </div>
+         </nav>
+      </header>
+
+      <!--==================== MAIN ====================-->
+      <main class="main">
+
+         <!-- CUSTOM CURSOR -->
+         <div class="cursor__ball cursor__ball--big" aria-hidden="true">
+            <svg height="30" width="30">
+               <circle cx="15" cy="15" r="12" stroke-width="0"></circle>
+            </svg>
+         </div>
+         <div class="cursor__ball cursor__ball--small" aria-hidden="true">
+            <svg height="10" width="10">
+               <circle cx="5" cy="5" r="4" stroke-width="0"></circle>
+            </svg>
+         </div>
+
+         <!--==================== HOME ====================-->
+         <section class="home section" id="home">
+            <!-- Ambient glow blob background -->
+            <div class="home__blob" aria-hidden="true">
+               <div class="home__blob-inner"></div>
+            </div>
+
+            <div class="home__container container grid">
+               <div class="home__data">
+                  <span class="home__greeting">Hello, I'm</span>
+
+                  <h1 class="home__name">Ayush Raj</h1>
+
+                  <div class="home__profession">
+                     <!-- Static primary role — always visible, never rotates -->
+                     <div class="home__static-role">Full-Stack Developer</div>
+
+                     <!-- Tech-stack ticker — subtle rotating secondary line -->
+                     <div class="home__tech-clip" aria-label="Technology stack" aria-live="off">
+                        <div class="home__tech-ticker">
+                           <span class="home__tech-word" style="--tech-index: 0">React &bull; Node.js &bull; MongoDB</span>
+                           <span class="home__tech-word" style="--tech-index: 1">Express &bull; REST APIs &bull; JWT</span>
+                           <span class="home__tech-word" style="--tech-index: 2">Backend Engineering &bull; System Design</span>
+                           <span class="home__tech-word" style="--tech-index: 3">Cloud &bull; Databases &bull; Scalability</span>
+                        </div>
+                     </div>
+
+                     <div class="home__profession-group">
+                        <span class="home__profession-tagline">Building scalable web applications and backend systems.</span>
+                     </div>
+
+                     <!-- Credibility statement — single compact line -->
+                     <p class="home__credibility">Built 4 production-grade applications across FinTech, Healthcare, Climate Analytics &amp; Rental Marketplace.</p>
+                  </div>
+
+                  <!-- MERN Stack badge -->
+                  <div class="home__badge-row">
+                     <span class="home__badge">
+                        <i class="ri-code-s-slash-line"></i>
+                        MERN Stack Developer
+                     </span>
+                  </div>
+
+                  <div class="home__social" id="home-social">
+                     <!-- Social links dynamically injected by main.js -->
+                  </div>
+
+                  <a href="assets/pdf/Ayush_Raj_Resume.pdf" download class="home__cv button">
+                     <i class="ri-download-line"></i>
+                     Download Resume
+                  </a>
+               </div>
+
+               <div class="home__image">
+                  <img src="assets/img/home-perfil.png" alt="Ayush Raj - Profile Photo" class="home__img">
+               </div>
+            </div>
+         </section>
+
+         <!--==================== ABOUT ====================-->
+         <section class="about section" id="about">
+            <div class="about__container container grid">
+
+               <!-- Image Column -->
+               <div class="about__image">
+                  <img src="assets/img/about-perfil.png" alt="Ayush Raj - About Photo" class="about__img">
+               </div>
+
+               <!-- Content Column -->
+               <div class="about__data">
+
+                  <!-- Eyebrow label -->
+                  <span class="about__eyebrow">About Me</span>
+
+                  <!-- Main heading -->
+                  <h2 class="about__title">
+                     Building Scalable<br>
+                     <span>Software Solutions</span>
+                  </h2>
+
+                  <!-- Description paragraphs -->
+                  <div class="about__description-wrap">
+                     <p class="about__description">
+                        Computer Science student and Full-Stack Developer passionate about building
+                        <b>scalable software solutions</b> that solve real-world problems.
+                     </p>
+                     <p class="about__description">
+                        Built production-grade applications across <b>FinTech, Healthcare, Climate Analytics,</b>
+                        and <b>Rental Marketplace</b> domains using React, Node.js, Express, MongoDB, Python,
+                        and Cloud technologies.
+                     </p>
+                     <p class="about__description">
+                        Focused on <b>backend engineering</b>, RESTful APIs, system design, databases, and
+                        creating real-world products that deliver meaningful user impact.
+                     </p>
+                  </div>
+
+                  <!-- Stats row -->
+                  <div class="about__stats">
+                     <div class="about__stat">
+                        <span class="about__stat-number">4+</span>
+                        <span class="about__stat-label">Full-Stack Projects</span>
+                     </div>
+                     <div class="about__stat">
+                        <span class="about__stat-number">10+</span>
+                        <span class="about__stat-label">Technologies</span>
+                     </div>
+                     <div class="about__stat">
+                        <span class="about__stat-number">3</span>
+                        <span class="about__stat-label">Industry Domains</span>
+                     </div>
+                     <div class="about__stat">
+                        <span class="about__stat-number">100%</span>
+                        <span class="about__stat-label">Responsive Across Devices</span>
+                     </div>
+                  </div>
+
+                  <!-- CTA — smooth scroll to projects -->
+                  <a href="#projects" class="about__cta" id="about-learn-more">
+                     <span>Explore My Work</span>
+                     <i class="ri-arrow-right-line"></i>
+                  </a>
+
+               </div>
+            </div>
+         </section>
+
+
+         <!--==================== PROJECTS ====================-->
+         <section class="projects section" id="projects">
+
+            <!-- Section Header -->
+            <div class="projects__header">
+               <span class="projects__eyebrow">My Work</span>
+               <h2 class="projects__section-title">
+                  Featured <span>Projects</span>
+               </h2>
+               <div class="projects__accent-line" aria-hidden="true"></div>
+               <p class="projects__section-subtitle">
+                  Production-grade applications built across FinTech, Healthcare, Climate Analytics, and Rental Marketplace domains using modern full-stack technologies.
+               </p>
+            </div>
+
+            <div class="projects__grid container">
+
+               <!-- Project 1: RajSpace -->
+               <article class="projects__card-v2" id="project-rajspace">
+                  <div class="projects__card-image">
+                     <img src="assets/img/project-rajspace.png" alt="RajSpace — Full-Stack Rental Marketplace Platform" class="projects__card-img">
+                     <div class="projects__card-overlay" aria-hidden="true"></div>
+                     <span class="projects__card-domain">Rental Marketplace</span>
+                     <span class="projects__card-status">Live</span>
+                  </div>
+                  <div class="projects__card-body">
+                     <span class="projects__card-number" aria-hidden="true">01</span>
+                     <h3 class="projects__card-title">RajSpace</h3>
+                     <p class="projects__card-tagline">Multi-role property rental and management platform</p>
+                     <p class="projects__card-desc">
+                        A full-stack rental marketplace platform enabling users to discover, list, and manage rental properties with secure authentication and responsive user experience.
+                     </p>
+                     <div class="projects__card-tech">
+                        <span class="projects__tech-pill">React</span>
+                        <span class="projects__tech-pill">Node.js</span>
+                        <span class="projects__tech-pill">Express.js</span>
+                        <span class="projects__tech-pill">MongoDB</span>
+                     </div>
+                     <div class="projects__card-actions">
+                        <a href="https://rajspace.onrender.com/listings" class="projects__btn-primary" target="_blank" rel="noopener noreferrer" id="rajspace-demo-btn">
+                           <i class="ri-external-link-line"></i>
+                           Live Demo
+                        </a>
+                        <a href="https://github.com/rajayush6200/rajspace" class="projects__btn-secondary" target="_blank" rel="noopener noreferrer" id="rajspace-github-btn">
+                           <i class="ri-github-line"></i>
+                           GitHub
+                        </a>
+                     </div>
+                  </div>
+               </article>
+
+               <!-- Project 2: Investro -->
+               <article class="projects__card-v2" id="project-investro">
+                  <div class="projects__card-image">
+                     <img src="assets/img/project-investro.png" alt="Investro — FinTech Investment Platform" class="projects__card-img">
+                     <div class="projects__card-overlay" aria-hidden="true"></div>
+                     <span class="projects__card-domain">FinTech</span>
+                     <span class="projects__card-status">Live</span>
+                  </div>
+                  <div class="projects__card-body">
+                     <span class="projects__card-number" aria-hidden="true">02</span>
+                     <h3 class="projects__card-title">Investro</h3>
+                     <p class="projects__card-tagline">Real-time investment tracking and portfolio analytics dashboard</p>
+                     <p class="projects__card-desc">
+                        A FinTech investment platform designed to help users track investments, manage portfolios, and visualize financial growth through interactive dashboards.
+                     </p>
+                     <div class="projects__card-tech">
+                        <span class="projects__tech-pill">React</span>
+                        <span class="projects__tech-pill">Node.js</span>
+                        <span class="projects__tech-pill">Express.js</span>
+                        <span class="projects__tech-pill">MongoDB</span>
+                     </div>
+                     <div class="projects__card-actions">
+                        <a href="https://investro.onrender.com/" class="projects__btn-primary" target="_blank" rel="noopener noreferrer" id="investro-demo-btn">
+                           <i class="ri-external-link-line"></i>
+                           Live Demo
+                        </a>
+                        <a href="https://github.com/rajayush6200/investro" class="projects__btn-secondary" target="_blank" rel="noopener noreferrer" id="investro-github-btn">
+                           <i class="ri-github-line"></i>
+                           GitHub
+                        </a>
+                     </div>
+                  </div>
+               </article>
+
+               <!-- Project 3: Earth Climate Analytics -->
+               <article class="projects__card-v2" id="project-climate">
+                  <div class="projects__card-image">
+                     <img src="assets/img/project-climate.png" alt="Earth Climate Analytics — Environmental Data Platform" class="projects__card-img">
+                     <div class="projects__card-overlay" aria-hidden="true"></div>
+                     <span class="projects__card-domain">Climate Analytics</span>
+                     <span class="projects__card-status">Live</span>
+                  </div>
+                  <div class="projects__card-body">
+                     <span class="projects__card-number" aria-hidden="true">03</span>
+                     <h3 class="projects__card-title">Earth Climate Analytics</h3>
+                     <p class="projects__card-tagline">Interactive climate visualization and environmental insights platform</p>
+                     <p class="projects__card-desc">
+                        A climate analytics platform providing environmental insights, weather trends, and data visualization through interactive dashboards and analytical tools.
+                     </p>
+                     <div class="projects__card-tech">
+                        <span class="projects__tech-pill">React</span>
+                        <span class="projects__tech-pill">Python</span>
+                        <span class="projects__tech-pill">APIs</span>
+                        <span class="projects__tech-pill">Data Visualization</span>
+                     </div>
+                     <div class="projects__card-actions">
+                        <a href="https://github.com/rajayush6200/earthvision-ai" class="projects__btn-primary" target="_blank" rel="noopener noreferrer" id="climate-demo-btn">
+                           <i class="ri-external-link-line"></i>
+                           Live Demo
+                        </a>
+                        <a href="https://github.com/rajayush6200/earthvision-ai" class="projects__btn-secondary" target="_blank" rel="noopener noreferrer" id="climate-github-btn">
+                           <i class="ri-github-line"></i>
+                           GitHub
+                        </a>
+                     </div>
+                  </div>
+               </article>
+
+               <!-- Project 4: VitalLink -->
+               <article class="projects__card-v2" id="project-vitallink">
+                  <div class="projects__card-image">
+                     <img src="assets/img/project-vitallink.png" alt="VitalLink — Healthcare Management Application" class="projects__card-img">
+                     <div class="projects__card-overlay" aria-hidden="true"></div>
+                     <span class="projects__card-domain">Healthcare</span>
+                     <span class="projects__card-status">Live</span>
+                  </div>
+                  <div class="projects__card-body">
+                     <span class="projects__card-number" aria-hidden="true">04</span>
+                     <h3 class="projects__card-title">VitalLink</h3>
+                     <p class="projects__card-tagline">Healthcare workflow and patient management system</p>
+                     <p class="projects__card-desc">
+                        A healthcare management application focused on patient records, healthcare workflows, and efficient communication between users and providers.
+                     </p>
+                     <div class="projects__card-tech">
+                        <span class="projects__tech-pill">React</span>
+                        <span class="projects__tech-pill">Node.js</span>
+                        <span class="projects__tech-pill">Express.js</span>
+                        <span class="projects__tech-pill">MongoDB</span>
+                     </div>
+                     <div class="projects__card-actions">
+                        <a href="https://vitallink-app-2jb5.onrender.com/" class="projects__btn-primary" target="_blank" rel="noopener noreferrer" id="vitallink-demo-btn">
+                           <i class="ri-external-link-line"></i>
+                           Live Demo
+                        </a>
+                        <a href="https://github.com/rajayush6200/VitalLink" class="projects__btn-secondary" target="_blank" rel="noopener noreferrer" id="vitallink-github-btn">
+                           <i class="ri-github-line"></i>
+                           GitHub
+                        </a>
+                     </div>
+                  </div>
+               </article>
+
+            </div>
+         </section>
+
+          <!--==================== SKILLS ====================-->
+          <section class="skills section" id="skills">
+
+            <!-- Ambient glow for section -->
+            <div class="skills__bg-glow" aria-hidden="true"></div>
+
+            <!-- Section Header -->
+            <div class="skills__header container">
+              <span class="skills__eyebrow">Technical Expertise</span>
+              <h2 class="skills__section-title">
+                Skills &amp; <span>Technologies</span>
+              </h2>
+              <div class="skills__accent-line" aria-hidden="true"></div>
+              <p class="skills__section-subtitle">
+                Technologies, tools, and engineering concepts I use to build scalable full-stack applications, backend systems, and production-ready software solutions.
+              </p>
+            </div>
+
+            <!-- Main 2-column layout -->
+            <div class="skills__main container">
+
+              <!-- LEFT: Skill Category Cards -->
+              <div class="skills__categories">
+
+                <!-- Card 1: Full-Stack Development -->
+                <article class="skills__card" id="skill-fullstack">
+                  <div class="skills__card-header">
+                    <div class="skills__card-icon">
+                      <i class="ri-code-s-slash-line"></i>
+                    </div>
+                    <h3 class="skills__card-title">Full-Stack Development</h3>
+                  </div>
+                  <div class="skills__card-tags">
+                    <span class="skills__tag">React.js</span>
+                    <span class="skills__tag">Node.js</span>
+                    <span class="skills__tag">Express.js</span>
+                    <span class="skills__tag">REST APIs</span>
+                    <span class="skills__tag">HTML</span>
+                    <span class="skills__tag">CSS</span>
+                    <span class="skills__tag">JavaScript</span>
+                  </div>
+                </article>
+
+                <!-- Card 2: Databases & Cloud -->
+                <article class="skills__card" id="skill-databases">
+                  <div class="skills__card-header">
+                    <div class="skills__card-icon">
+                      <i class="ri-database-2-line"></i>
+                    </div>
+                    <h3 class="skills__card-title">Databases &amp; Cloud</h3>
+                  </div>
+                  <div class="skills__card-tags">
+                    <span class="skills__tag">MongoDB</span>
+                    <span class="skills__tag">MySQL</span>
+                    <span class="skills__tag">AWS</span>
+                    <span class="skills__tag">Docker</span>
+                  </div>
+                </article>
+
+                <!-- Card 3: Programming Languages -->
+                <article class="skills__card" id="skill-languages">
+                  <div class="skills__card-header">
+                    <div class="skills__card-icon">
+                      <i class="ri-terminal-box-line"></i>
+                    </div>
+                    <h3 class="skills__card-title">Programming Languages</h3>
+                  </div>
+                  <div class="skills__card-tags">
+                    <span class="skills__tag">Python</span>
+                    <span class="skills__tag">Java</span>
+                    <span class="skills__tag">C++</span>
+                    <span class="skills__tag">JavaScript</span>
+                    <span class="skills__tag">SQL</span>
+                    <span class="skills__tag">R</span>
+                  </div>
+                </article>
+
+                <!-- Card 4: Core Computer Science -->
+                <article class="skills__card" id="skill-cs-core">
+                  <div class="skills__card-header">
+                    <div class="skills__card-icon">
+                      <i class="ri-cpu-line"></i>
+                    </div>
+                    <h3 class="skills__card-title">Core Computer Science</h3>
+                  </div>
+                  <div class="skills__card-tags">
+                    <span class="skills__tag">Data Structures</span>
+                    <span class="skills__tag">Algorithms</span>
+                    <span class="skills__tag">OOP</span>
+                    <span class="skills__tag">Operating Systems</span>
+                    <span class="skills__tag">DBMS</span>
+                    <span class="skills__tag">Computer Networks</span>
+                  </div>
+                </article>
+
+                <!-- Card 5: Developer Tools -->
+                <article class="skills__card" id="skill-devtools">
+                  <div class="skills__card-header">
+                    <div class="skills__card-icon">
+                      <i class="ri-tools-line"></i>
+                    </div>
+                    <h3 class="skills__card-title">Developer Tools</h3>
+                  </div>
+                  <div class="skills__card-tags">
+                    <span class="skills__tag">Git</span>
+                    <span class="skills__tag">GitHub</span>
+                    <span class="skills__tag">Linux</span>
+                    <span class="skills__tag">VS Code</span>
+                    <span class="skills__tag">GitHub Actions</span>
+                    <span class="skills__tag">Jupyter Notebook</span>
+                  </div>
+                </article>
+
+                <!-- Card 6: Backend Engineering -->
+                <article class="skills__card" id="skill-backend">
+                  <div class="skills__card-header">
+                    <div class="skills__card-icon">
+                      <i class="ri-server-line"></i>
+                    </div>
+                    <h3 class="skills__card-title">Backend Engineering</h3>
+                  </div>
+                  <div class="skills__card-tags">
+                    <span class="skills__tag">Authentication</span>
+                    <span class="skills__tag">Authorization</span>
+                    <span class="skills__tag">Session Management</span>
+                    <span class="skills__tag">API Design</span>
+                    <span class="skills__tag">MVC Architecture</span>
+                    <span class="skills__tag">System Design</span>
+                  </div>
+                </article>
+
+              </div>
+
+              <!-- RIGHT: Engineering Focus Panel -->
+              <div class="skills__right">
+
+                <!-- Engineering Focus card -->
+                <div class="skills__focus-card">
+                  <div class="skills__focus-icon-row">
+                    <div class="skills__focus-icon-wrap">
+                      <i class="ri-flashlight-line"></i>
+                    </div>
+                    <h3 class="skills__focus-heading">Technical Profile</h3>
+                  </div>
+                  <p class="skills__focus-text">
+                    I specialize in building production-grade full-stack applications with a strong focus on backend engineering, scalable system architecture, RESTful APIs, database design, authentication systems, and cloud deployment.
+                  </p>
+                  <p class="skills__focus-text">
+                    My experience spans FinTech, Healthcare, Climate Analytics, and Rental Marketplace platforms, where I have developed real-world solutions that prioritize performance, maintainability, and user experience.
+                  </p>
+                </div>
+
+                <!-- 4 Stat highlight cards -->
+                <div class="skills__stats-grid">
+
+                  <div class="skills__stat-card">
+                    <span class="skills__stat-number" data-target="4" data-suffix="+">0</span>
+                    <span class="skills__stat-label">Production Projects</span>
+                  </div>
+
+                  <div class="skills__stat-card">
+                    <span class="skills__stat-number" data-target="15" data-suffix="+">0</span>
+                    <span class="skills__stat-label">Technologies</span>
+                  </div>
+
+                  <div class="skills__stat-card">
+                    <span class="skills__stat-number" data-target="4" data-suffix="">0</span>
+                    <span class="skills__stat-label">Industry Domains</span>
+                  </div>
+
+                  <div class="skills__stat-card skills__stat-card--text">
+                    <span class="skills__stat-badge">Backend</span>
+                    <span class="skills__stat-badge skills__stat-badge--accent">Engineering</span>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Tech Stack Chip Grid -->
+            <div class="skills__stack-section container">
+              <h3 class="skills__stack-title">Tools &amp; Technologies</h3>
+              <div class="skills__accent-line skills__stack-line" aria-hidden="true"></div>
+              <div class="skills__chip-grid">
+
+                <span class="skills__chip"><i class="ri-reactjs-line"></i>React</span>
+                <span class="skills__chip"><i class="ri-nodejs-line"></i>Node.js</span>
+                <span class="skills__chip"><i class="ri-server-line"></i>Express</span>
+                <span class="skills__chip"><i class="ri-database-2-line"></i>MongoDB</span>
+                <span class="skills__chip"><i class="ri-database-line"></i>MySQL</span>
+                <span class="skills__chip"><i class="ri-cloud-line"></i>AWS</span>
+                <span class="skills__chip"><i class="ri-ship-2-line"></i>Docker</span>
+                <span class="skills__chip"><i class="ri-code-s-slash-line"></i>Python</span>
+                <span class="skills__chip"><i class="ri-cup-line"></i>Java</span>
+                <span class="skills__chip"><i class="ri-braces-line"></i>C++</span>
+                <span class="skills__chip"><i class="ri-javascript-line"></i>JavaScript</span>
+                <span class="skills__chip"><i class="ri-git-branch-line"></i>Git</span>
+                <span class="skills__chip"><i class="ri-github-line"></i>GitHub</span>
+                <span class="skills__chip"><i class="ri-terminal-line"></i>Linux</span>
+                <span class="skills__chip"><i class="ri-link-m"></i>REST API</span>
+                <span class="skills__chip"><i class="ri-shield-keyhole-line"></i>JWT</span>
+                <span class="skills__chip"><i class="ri-image-2-line"></i>Cloudinary</span>
+                <span class="skills__chip"><i class="ri-map-pin-line"></i>Mapbox</span>
+
+              </div>
+            </div>
+
+          </section>
+
+          <!--==================== CERTIFICATIONS ====================-->
+          <section class="certifications section" id="certifications">
+
+            <!-- Ambient glow for section -->
+            <div class="certifications__bg-glow" aria-hidden="true"></div>
+
+            <!-- Section Header -->
+            <div class="certifications__header container">
+              <span class="certifications__eyebrow">PROFESSIONAL CREDENTIALS</span>
+              <h2 class="certifications__section-title">
+                Certifications
+              </h2>
+              <div class="certifications__accent-line" aria-hidden="true"></div>
+              <p class="certifications__section-subtitle">
+                Oracle-certified credentials demonstrating expertise in Artificial Intelligence, Generative AI, Data Science, Vector Search, and modern cloud technologies.
+              </p>
+            </div>
+
+            <!-- Certifications 2x2 Grid -->
+            <div class="certifications__grid container">
+
+              <!-- Certification 1: AI Foundations -->
+              <article class="certifications__card" id="cert-ai-foundations">
+                <div class="certifications__card-badge">
+                  <img
+                    src="assets/img/cert-badge-ai-foundations.png"
+                    alt="Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate Badge"
+                    class="certifications__badge-img"
+                    loading="lazy"
+                  >
+                </div>
+                <div class="certifications__card-body">
+                  <div class="certifications__card-meta">
+                    <span class="certifications__category-badge">Artificial Intelligence</span>
+                    <span class="certifications__date">
+                      <i class="ri-calendar-line"></i>
+                      June 2025
+                    </span>
+                  </div>
+                  <h3 class="certifications__card-title">Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate</h3>
+                  <p class="certifications__issuer">
+                    <i class="ri-award-line"></i>
+                    Oracle University
+                  </p>
+                  <p class="certifications__verified">
+                    <i class="ri-verified-badge-line"></i>
+                    Oracle Verified Credential
+                  </p>
+                  <p class="certifications__card-desc">
+                    Built a strong foundation in Artificial Intelligence, Machine Learning concepts, Generative AI fundamentals, OCI AI services, model lifecycle management, and responsible AI practices within Oracle Cloud Infrastructure.
+                  </p>
+                  <a
+                    href="https://catalog-education.oracle.com/ords/certview/sharebadge?id=FCF0051C3B273EBBA76AD81A183CA737271E808217E06B51E24F482B5878A864"
+                    class="certifications__btn"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    id="cert-ai-foundations-btn"
+                    aria-label="View Oracle AI Foundations credential on Oracle verification page"
+                  >
+                    <span>View Credential</span>
+                    <i class="ri-external-link-line"></i>
+                  </a>
+                </div>
+              </article>
+
+              <!-- Certification 2: Generative AI Professional -->
+              <article class="certifications__card" id="cert-genai-professional">
+                <div class="certifications__card-badge">
+                  <img
+                    src="assets/img/cert-badge-genai-professional.png"
+                    alt="Oracle Cloud Infrastructure 2025 Certified Generative AI Professional Badge"
+                    class="certifications__badge-img"
+                    loading="lazy"
+                  >
+                </div>
+                <div class="certifications__card-body">
+                  <div class="certifications__card-meta">
+                    <span class="certifications__category-badge certifications__category-badge--genai">Generative AI</span>
+                    <span class="certifications__date">
+                      <i class="ri-calendar-line"></i>
+                      July 2025
+                    </span>
+                  </div>
+                  <h3 class="certifications__card-title">Oracle Cloud Infrastructure 2025 Certified Generative AI Professional</h3>
+                  <p class="certifications__issuer">
+                    <i class="ri-award-line"></i>
+                    Oracle University
+                  </p>
+                  <p class="certifications__verified">
+                    <i class="ri-verified-badge-line"></i>
+                    Oracle Verified Credential
+                  </p>
+                  <p class="certifications__card-desc">
+                    Demonstrated expertise in Large Language Models (LLMs), prompt engineering, Retrieval-Augmented Generation (RAG), generative AI workflows, Oracle AI services, and enterprise AI solution development on OCI.
+                  </p>
+                  <a
+                    href="https://catalog-education.oracle.com/ords/certview/sharebadge?id=821F3C61E4C02CE32DFB757D60C1893710C0E513D881A00EBA89E15FB7E00267"
+                    class="certifications__btn"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    id="cert-genai-btn"
+                    aria-label="View Oracle Generative AI Professional credential on Oracle verification page"
+                  >
+                    <span>View Credential</span>
+                    <i class="ri-external-link-line"></i>
+                  </a>
+                </div>
+              </article>
+
+              <!-- Certification 3: AI Vector Search Professional -->
+              <article class="certifications__card" id="cert-vector-search">
+                <div class="certifications__card-badge">
+                  <img
+                    src="assets/img/cert-badge-vector-search.png"
+                    alt="Oracle AI Vector Search Certified Professional Badge"
+                    class="certifications__badge-img"
+                    loading="lazy"
+                  >
+                </div>
+                <div class="certifications__card-body">
+                  <div class="certifications__card-meta">
+                    <span class="certifications__category-badge certifications__category-badge--search">AI Search Systems</span>
+                    <span class="certifications__date">
+                      <i class="ri-calendar-line"></i>
+                      August 2025
+                    </span>
+                  </div>
+                  <h3 class="certifications__card-title">Oracle AI Vector Search Certified Professional</h3>
+                  <p class="certifications__issuer">
+                    <i class="ri-award-line"></i>
+                    Oracle University
+                  </p>
+                  <p class="certifications__verified">
+                    <i class="ri-verified-badge-line"></i>
+                    Oracle Verified Credential
+                  </p>
+                  <p class="certifications__card-desc">
+                    Validated skills in vector embeddings, semantic search, similarity matching, AI-powered retrieval systems, Oracle AI Vector Search capabilities, and building scalable Retrieval-Augmented Generation (RAG) applications.
+                  </p>
+                  <a
+                    href="https://catalog-education.oracle.com/ords/certview/sharebadge?id=DCAB3C813A4BA54EFE00D8D6896D89EC916C6BD287C7BBF82E6079F812777244"
+                    class="certifications__btn"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    id="cert-vector-search-btn"
+                    aria-label="View Oracle AI Vector Search Professional credential on Oracle verification page"
+                  >
+                    <span>View Credential</span>
+                    <i class="ri-external-link-line"></i>
+                  </a>
+                </div>
+              </article>
+
+              <!-- Certification 4: Data Science Professional -->
+              <article class="certifications__card" id="cert-data-science">
+                <div class="certifications__card-badge">
+                  <img
+                    src="assets/img/cert-badge-data-science.png"
+                    alt="Oracle Cloud Infrastructure 2025 Certified Data Science Professional Badge"
+                    class="certifications__badge-img"
+                    loading="lazy"
+                  >
+                </div>
+                <div class="certifications__card-body">
+                  <div class="certifications__card-meta">
+                    <span class="certifications__category-badge certifications__category-badge--data">Data Science</span>
+                    <span class="certifications__date">
+                      <i class="ri-calendar-line"></i>
+                      September 2025
+                    </span>
+                  </div>
+                  <h3 class="certifications__card-title">Oracle Cloud Infrastructure 2025 Certified Data Science Professional</h3>
+                  <p class="certifications__issuer">
+                    <i class="ri-award-line"></i>
+                    Oracle University
+                  </p>
+                  <p class="certifications__verified">
+                    <i class="ri-verified-badge-line"></i>
+                    Oracle Verified Credential
+                  </p>
+                  <p class="certifications__card-desc">
+                    Demonstrated proficiency in data science workflows including data preparation, machine learning, model evaluation, feature engineering, predictive analytics, and deploying data-driven solutions on Oracle Cloud Infrastructure.
+                  </p>
+                  <a
+                    href="https://catalog-education.oracle.com/ords/certview/sharebadge?id=07BB8EC90ACBB863A4AD3471DFDFBDDCC978886BC7F4BC6BE8B08202BE6F1D24"
+                    class="certifications__btn"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    id="cert-data-science-btn"
+                    aria-label="View Oracle Data Science Professional credential on Oracle verification page"
+                  >
+                    <span>View Credential</span>
+                    <i class="ri-external-link-line"></i>
+                  </a>
+                </div>
+              </article>
+
+            </div>
+          </section>
+           <!--==================== CONTACT ====================-->
+         <section class="contact section" id="contact">
+            <!-- Ambient glow for section -->
+            <div class="contact__bg-glow" aria-hidden="true"></div>
+
+            <!-- Section Header -->
+            <div class="contact__header container">
+              <span class="contact__eyebrow">LET'S CONNECT</span>
+              <h2 class="contact__section-title">
+                Get In Touch
+              </h2>
+              <div class="contact__accent-line" aria-hidden="true"></div>
+              <p class="contact__section-subtitle">
+                I'm always interested in discussing software engineering opportunities, backend development roles, full-stack projects, and innovative technology solutions. Whether you have an opportunity, collaboration, or simply want to connect, feel free to reach out.
+              </p>
+            </div>
+
+            <!-- TOP ROW: Contact Info (left) + Send Message (right) -->
+            <div class="contact__container container grid">
+               <!-- LEFT SIDE -->
+               <div class="contact__left">
+                  <!-- Contact Info Card -->
+                  <div class="contact__info-card">
+                     <h3 class="contact__card-title">Contact Information</h3>
+                     
+                     <div class="contact__info-list">
+                        <div class="contact__info-item">
+                           <div class="contact__info-icon"><i class="ri-mail-send-line"></i></div>
+                           <div class="contact__info-data">
+                              <span class="contact__info-label">Email</span>
+                              <a href="mailto:rajayush6200@gmail.com" class="contact__info-text">rajayush6200@gmail.com</a>
+                           </div>
+                        </div>
+                        
+                        <div class="contact__info-item">
+                           <div class="contact__info-icon"><i class="ri-phone-line"></i></div>
+                           <div class="contact__info-data">
+                              <span class="contact__info-label">Phone</span>
+                              <a href="tel:+917859044487" class="contact__info-text">+91 7859044487</a>
+                           </div>
+                        </div>
+
+                        <div class="contact__info-item">
+                           <div class="contact__info-icon"><i class="ri-map-pin-line"></i></div>
+                           <div class="contact__info-data">
+                              <span class="contact__info-label">Location</span>
+                              <span class="contact__info-text">Sitamarhi, Bihar, India</span>
+                           </div>
+                        </div>
+                        
+                        <!-- Availability item — badge attached to label row -->
+                        <div class="contact__info-item">
+                           <div class="contact__info-icon"><i class="ri-briefcase-line"></i></div>
+                           <div class="contact__info-data">
+                              <div class="contact__availability-header">
+                                 <span class="contact__info-label">Availability</span>
+                                 <span class="contact__status-badge"><span class="contact__status-dot"></span>Available Now</span>
+                              </div>
+                              <ul class="contact__availability-list">
+                                 <li><i class="ri-checkbox-circle-line"></i>Internships</li>
+                                 <li><i class="ri-checkbox-circle-line"></i>Full-Time Roles</li>
+                                 <li><i class="ri-checkbox-circle-line"></i>Freelance Projects</li>
+                                 <li><i class="ri-checkbox-circle-line"></i>Collaborations</li>
+                              </ul>
+                           </div>
+                        </div>
+
+                        <div class="contact__info-item">
+                           <div class="contact__info-icon"><i class="ri-time-line"></i></div>
+                           <div class="contact__info-data">
+                              <span class="contact__info-label">Response Time</span>
+                              <span class="contact__info-text">Usually replies within 24 hours</span>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <!-- RIGHT SIDE - FORM -->
+               <div class="contact__right">
+                  <div class="contact__form-card">
+                     <h3 class="contact__card-title">Send a Message</h3>
+                     
+                     <form id="contact-form" class="contact__form">
+                        <div class="contact__form-group">
+                           <input type="text" id="from_name" name="from_name" class="contact__form-input" placeholder=" " required>
+                           <label for="from_name" class="contact__form-label">Full Name</label>
+                        </div>
+                        
+                        <div class="contact__form-group">
+                           <input type="email" id="from_email" name="from_email" class="contact__form-input" placeholder=" " required>
+                           <label for="from_email" class="contact__form-label">Email Address</label>
+                           <span class="contact__form-error-msg" id="email-error">Please enter a valid email</span>
+                        </div>
+                        
+                        <div class="contact__form-group">
+                           <input type="text" id="subject" name="subject" class="contact__form-input" placeholder=" " required>
+                           <label for="subject" class="contact__form-label">Subject</label>
+                        </div>
+                        
+                        <div class="contact__form-group contact__form-group--textarea">
+                           <textarea id="message" name="message" class="contact__form-input contact__form-textarea" placeholder=" " required></textarea>
+                           <label for="message" class="contact__form-label">Message</label>
+                        </div>
+                        
+                        <button type="submit" class="contact__submit-btn" id="contact-submit-btn">
+                           <span class="contact__submit-text">Send Message</span>
+                           <i class="ri-send-plane-line contact__submit-icon"></i>
+                           <div class="contact__submit-spinner"><i class="ri-loader-4-line"></i></div>
+                        </button>
+                        
+                        <div class="contact__form-status" id="contact-form-status"></div>
+                     </form>
+                  </div>
+               </div>
+            </div>
+
+            <!-- SECOND ROW: Connect Professionally — Full-width -->
+            <div class="contact__social-section container">
+               <div class="contact__social-header">
+                  <h3 class="contact__social-title">Connect Professionally</h3>
+                  <div class="contact__accent-line contact__social-accent" aria-hidden="true"></div>
+               </div>
+               <div class="contact__social-row" id="contact-social-row">
+                  <a href="https://github.com/rajayush6200" target="_blank" rel="noopener noreferrer" class="contact__platform-card" id="social-github">
+                     <div class="contact__platform-icon"><i class="ri-github-fill"></i></div>
+                     <span class="contact__platform-name">GitHub</span>
+                     <span class="contact__platform-desc">View my repositories &amp; open-source work</span>
+                  </a>
+                  <a href="https://www.linkedin.com/in/rajayush6200/" target="_blank" rel="noopener noreferrer" class="contact__platform-card" id="social-linkedin">
+                     <div class="contact__platform-icon"><i class="ri-linkedin-fill"></i></div>
+                     <span class="contact__platform-name">LinkedIn</span>
+                     <span class="contact__platform-desc">Connect for professional opportunities</span>
+                  </a>
+                  <a href="https://leetcode.com/u/rajayush6200/" target="_blank" rel="noopener noreferrer" class="contact__platform-card" id="social-leetcode">
+                     <div class="contact__platform-icon"><i class="ri-code-box-line"></i></div>
+                     <span class="contact__platform-name">LeetCode</span>
+                     <span class="contact__platform-desc">DSA practice &amp; problem-solving profile</span>
+                  </a>
+                  <a href="https://www.geeksforgeeks.org/profile/rajayush6200" target="_blank" rel="noopener noreferrer" class="contact__platform-card" id="social-gfg">
+                     <div class="contact__platform-icon"><i class="ri-terminal-box-line"></i></div>
+                     <span class="contact__platform-name">GeeksforGeeks</span>
+                     <span class="contact__platform-desc">Competitive programming &amp; CS content</span>
+                  </a>
+               </div>
+            </div>
+         </section>
+
+         <!--==================== CALL TO ACTION ====================-->
+         <section class="cta section">
+            <div class="cta__container container">
+               <h2 class="cta__title">Ready to Build Something Amazing?</h2>
+               <p class="cta__description">
+                  I'm actively seeking opportunities where I can contribute as a Software Engineer, Backend Developer, or Full-Stack Developer while continuing to build impactful technology solutions.
+               </p>
+               <div class="cta__actions">
+                  <a href="assets/pdf/Ayush_Raj_Resume.pdf" download class="projects__btn-primary">
+                     <i class="ri-download-line"></i> Download Resume
+                  </a>
+                  <a href="https://github.com/rajayush6200" target="_blank" rel="noopener noreferrer" class="projects__btn-secondary">
+                     <i class="ri-github-line"></i> View GitHub
+                  </a>
+               </div>
+            </div>
+         </section>
+
+      </main>
+
+      <!--==================== FOOTER ====================-->
+      <footer class="footer">
+         <div class="footer__container container">
+            <p class="footer__tagline">Building scalable software and impactful digital experiences</p>
+            <div class="footer__divider" aria-hidden="true"></div>
+            <div class="footer__bottom">
+               <p class="footer__copy">© 2026 Ayush Raj</p>
+               <p class="footer__developer">Designed &amp; Developed by <span class="footer__name">Ayush Raj</span></p>
+            </div>
+         </div>
+      </footer>
+
+      <!--=============== SCROLLREVEAL ===============-->
+      <script src="assets/js/scrollreveal.min.js"></script>
+
+      <!--=============== ANIME JS ===============-->
+      <script src="https://cdn.jsdelivr.net/npm/animejs/lib/anime.iife.min.js"></script>
+
+      <!--=============== SWIPER JS ===============-->
+      <script src="assets/js/swiper-bundle.min.js"></script>
+
+            <!--=============== EMAIL JS ===============-->
+      <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+      <!--=============== MAIN JS ===============-->
+      <script src="assets/js/main.js"></script>
+   </body>
+</html>
