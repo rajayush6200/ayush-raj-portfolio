@@ -3537,10 +3537,6 @@ a.contact__info-text:hover {
   letter-spacing: -0.3px;
 }
 
-.contact__social-accent {
-  /* Inherits from .contact__accent-line */
-}
-
 /* Platform Cards Row — 1 col mobile, 2×2 tablet, 4-col desktop */
 .contact__social-row {
   display: grid;
