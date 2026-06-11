@@ -70,6 +70,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html {
@@ -3121,7 +3122,6 @@ body::before {
     display: none;
   }
 
-  body,
   .nav__close,
   .nav__toggle,
   .button,
