@@ -3,16 +3,49 @@
    <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="description" content="Ayush Raj — Full-Stack Developer. Building scalable web applications with modern technologies. Portfolio showcasing software engineering projects.">
+
+      <!--=============== PRIMARY META ===============-->
+      <title>Ayush Raj — Full-Stack Developer | MERN Stack Engineer</title>
+      <meta name="description" content="Ayush Raj — Full-Stack Developer & MERN Stack Engineer. Building scalable web applications with React, Node.js, Express, MongoDB. Portfolio of production-grade software engineering projects.">
+      <meta name="author" content="Ayush Raj">
+      <meta name="keywords" content="Ayush Raj, Full-Stack Developer, MERN Stack, React, Node.js, Express, MongoDB, Software Engineer, Backend Developer, Portfolio">
       <meta name="theme-color" content="#07070f">
+      <meta name="robots" content="index, follow">
+
+      <!--=============== OPEN GRAPH ===============-->
+      <meta property="og:type" content="website">
+      <meta property="og:url" content="https://rajayush6200.github.io/ayush-raj-portfolio/">
+      <meta property="og:title" content="Ayush Raj — Full-Stack Developer | MERN Stack Engineer">
+      <meta property="og:description" content="Full-Stack Developer & MERN Stack Engineer building scalable web applications. Explore my production-grade projects in FinTech, Healthcare, Climate Analytics, and Rental Marketplace.">
+      <meta property="og:image" content="https://rajayush6200.github.io/ayush-raj-portfolio/assets/img/home-perfil.png">
+      <meta property="og:site_name" content="Ayush Raj Portfolio">
+      <meta property="og:locale" content="en_US">
+
+      <!--=============== TWITTER CARD ===============-->
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:site" content="@AyushRaj444">
+      <meta name="twitter:creator" content="@AyushRaj444">
+      <meta name="twitter:title" content="Ayush Raj — Full-Stack Developer | MERN Stack Engineer">
+      <meta name="twitter:description" content="Full-Stack Developer & MERN Stack Engineer building scalable web applications. Explore production-grade projects in FinTech, Healthcare, Climate Analytics, and Rental Marketplace.">
+      <meta name="twitter:image" content="https://rajayush6200.github.io/ayush-raj-portfolio/assets/img/home-perfil.png">
+
+      <!--=============== CANONICAL ===============-->
+      <link rel="canonical" href="https://rajayush6200.github.io/ayush-raj-portfolio/">
 
       <!--=============== FAVICON ===============-->
-      <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+      <link rel="icon" href="assets/img/favicon.png" type="image/png">
+      <link rel="apple-touch-icon" href="assets/img/favicon.png">
 
-      <!--=============== GOOGLE FONTS ===============-->
+      <!--=============== PERFORMANCE HINTS ===============-->
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+      <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+      <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+      <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
+      <!--=============== GOOGLE FONTS — non-render-blocking ===============-->
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+      <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"></noscript>
 
       <!--=============== REMIXICONS ===============-->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
@@ -22,16 +55,16 @@
 
       <!--=============== CSS ===============-->
       <link rel="stylesheet" href="assets/css/styles.css">
-
-      <title>Ayush Raj — Full-Stack Developer</title> 
    </head>
    <body>
+      <!--=============== SKIP LINK ===============-->
+      <a href="#main-content" class="skip-link">Skip to main content</a>
       <!--==================== HEADER ====================-->
       <header class="header" id="header">
          <nav class="nav container">
             <a href="#" class="nav__logo">Ayush</a>
 
-            <div class="nav__menu" id="nav-menu">
+            <div class="nav__menu" id="nav-menu" role="navigation" aria-label="Main navigation">
                <ul class="nav__list">
                   <li class="nav__item">
                      <a href="#about" class="nav__link">About</a>
@@ -51,20 +84,20 @@
                </ul>
 
                <!-- Close button -->
-               <div class="nav__close" id="nav-close">
-                  <i class="ri-close-line"></i>
-               </div>
+               <button class="nav__close" id="nav-close" aria-label="Close navigation menu">
+                  <i class="ri-close-line" aria-hidden="true"></i>
+               </button>
             </div>
 
             <!-- Toggle button -->
-            <div class="nav__toggle" id="nav-toggle">
-               <i class="ri-menu-line"></i>
-            </div>
+            <button class="nav__toggle" id="nav-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-menu">
+               <i class="ri-menu-line" aria-hidden="true"></i>
+            </button>
          </nav>
       </header>
 
       <!--==================== MAIN ====================-->
-      <main class="main">
+      <main class="main" id="main-content" role="main">
 
          <!-- CUSTOM CURSOR -->
          <div class="cursor__ball cursor__ball--big" aria-hidden="true">
@@ -132,7 +165,7 @@
                </div>
 
                <div class="home__image">
-                  <img src="assets/img/home-perfil.png" alt="Ayush Raj - Profile Photo" class="home__img">
+                  <img src="assets/img/home-perfil.png" alt="Ayush Raj - Full-Stack Developer Profile Photo" class="home__img" width="378" height="420" fetchpriority="high" decoding="async">
                </div>
             </div>
          </section>
@@ -143,7 +176,7 @@
 
                <!-- Image Column -->
                <div class="about__image">
-                  <img src="assets/img/about-perfil.png" alt="Ayush Raj - About Photo" class="about__img">
+                  <img src="assets/img/about-perfil.png" alt="Ayush Raj - About Photo" class="about__img" width="280" height="320" loading="lazy" decoding="async">
                </div>
 
                <!-- Content Column -->
@@ -856,23 +889,23 @@
                      
                      <form id="contact-form" class="contact__form">
                         <div class="contact__form-group">
-                           <input type="text" id="from_name" name="from_name" class="contact__form-input" placeholder=" " required>
+                           <input type="text" id="from_name" name="from_name" class="contact__form-input" placeholder=" " required aria-required="true" autocomplete="name">
                            <label for="from_name" class="contact__form-label">Full Name</label>
                         </div>
                         
                         <div class="contact__form-group">
-                           <input type="email" id="from_email" name="from_email" class="contact__form-input" placeholder=" " required>
+                           <input type="email" id="from_email" name="from_email" class="contact__form-input" placeholder=" " required aria-required="true" autocomplete="email">
                            <label for="from_email" class="contact__form-label">Email Address</label>
                            <span class="contact__form-error-msg" id="email-error">Please enter a valid email</span>
                         </div>
                         
                         <div class="contact__form-group">
-                           <input type="text" id="subject" name="subject" class="contact__form-input" placeholder=" " required>
+                           <input type="text" id="subject" name="subject" class="contact__form-input" placeholder=" " required aria-required="true" autocomplete="off">
                            <label for="subject" class="contact__form-label">Subject</label>
                         </div>
                         
                         <div class="contact__form-group contact__form-group--textarea">
-                           <textarea id="message" name="message" class="contact__form-input contact__form-textarea" placeholder=" " required></textarea>
+                           <textarea id="message" name="message" class="contact__form-input contact__form-textarea" placeholder=" " required aria-required="true" autocomplete="off"></textarea>
                            <label for="message" class="contact__form-label">Message</label>
                         </div>
                         
@@ -895,23 +928,23 @@
                   <div class="contact__accent-line contact__social-accent" aria-hidden="true"></div>
                </div>
                <div class="contact__social-row" id="contact-social-row">
-                  <a href="https://github.com/rajayush6200" target="_blank" rel="noopener noreferrer" class="contact__platform-card" id="social-github">
-                     <div class="contact__platform-icon"><i class="ri-github-fill"></i></div>
+                  <a href="https://github.com/rajayush6200" target="_blank" rel="noopener noreferrer" class="contact__platform-card" id="social-github" aria-label="Visit my GitHub profile">
+                     <div class="contact__platform-icon"><i class="ri-github-fill" aria-hidden="true"></i></div>
                      <span class="contact__platform-name">GitHub</span>
                      <span class="contact__platform-desc">View my repositories &amp; open-source work</span>
                   </a>
-                  <a href="https://www.linkedin.com/in/rajayush6200/" target="_blank" rel="noopener noreferrer" class="contact__platform-card" id="social-linkedin">
-                     <div class="contact__platform-icon"><i class="ri-linkedin-fill"></i></div>
+                  <a href="https://www.linkedin.com/in/rajayush6200/" target="_blank" rel="noopener noreferrer" class="contact__platform-card" id="social-linkedin" aria-label="Visit my LinkedIn profile">
+                     <div class="contact__platform-icon"><i class="ri-linkedin-fill" aria-hidden="true"></i></div>
                      <span class="contact__platform-name">LinkedIn</span>
                      <span class="contact__platform-desc">Connect for professional opportunities</span>
                   </a>
-                  <a href="https://leetcode.com/u/rajayush6200/" target="_blank" rel="noopener noreferrer" class="contact__platform-card" id="social-leetcode">
-                     <div class="contact__platform-icon"><i class="ri-code-box-line"></i></div>
+                  <a href="https://leetcode.com/u/rajayush6200/" target="_blank" rel="noopener noreferrer" class="contact__platform-card" id="social-leetcode" aria-label="Visit my LeetCode profile">
+                     <div class="contact__platform-icon"><i class="ri-code-box-line" aria-hidden="true"></i></div>
                      <span class="contact__platform-name">LeetCode</span>
                      <span class="contact__platform-desc">DSA practice &amp; problem-solving profile</span>
                   </a>
-                  <a href="https://www.geeksforgeeks.org/profile/rajayush6200" target="_blank" rel="noopener noreferrer" class="contact__platform-card" id="social-gfg">
-                     <div class="contact__platform-icon"><i class="ri-terminal-box-line"></i></div>
+                  <a href="https://www.geeksforgeeks.org/profile/rajayush6200" target="_blank" rel="noopener noreferrer" class="contact__platform-card" id="social-gfg" aria-label="Visit my GeeksforGeeks profile">
+                     <div class="contact__platform-icon"><i class="ri-terminal-box-line" aria-hidden="true"></i></div>
                      <span class="contact__platform-name">GeeksforGeeks</span>
                      <span class="contact__platform-desc">Competitive programming &amp; CS content</span>
                   </a>

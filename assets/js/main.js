@@ -157,34 +157,18 @@ if (copyBtn && emailEl) {
    copyBtn.addEventListener('click', () => {
       const email = emailEl.textContent.trim();
 
-      navigator.clipboard.writeText(email).then(() => {
-         const original = copyBtn.innerHTML;
-         copyBtn.innerHTML = '<i class="ri-check-line"></i> Copied!';
-         emailEl.classList.add('email-copied');
+      if (navigator.clipboard && window.isSecureContext) {
+         navigator.clipboard.writeText(email).then(() => {
+            const original = copyBtn.innerHTML;
+            copyBtn.innerHTML = '<i class="ri-check-line"></i> Copied!';
+            emailEl.classList.add('email-copied');
 
-         setTimeout(() => {
-            copyBtn.innerHTML = original;
-            emailEl.classList.remove('email-copied');
-         }, 2500);
-      }).catch(() => {
-         const textarea = document.createElement('textarea');
-         textarea.value = email;
-         textarea.style.position = 'fixed';
-         textarea.style.opacity = '0';
-         document.body.appendChild(textarea);
-         textarea.select();
-         document.execCommand('copy');
-         document.body.removeChild(textarea);
-
-         const original = copyBtn.innerHTML;
-         copyBtn.innerHTML = '<i class="ri-check-line"></i> Copied!';
-         emailEl.classList.add('email-copied');
-
-         setTimeout(() => {
-            copyBtn.innerHTML = original;
-            emailEl.classList.remove('email-copied');
-         }, 2500);
-      });
+            setTimeout(() => {
+               copyBtn.innerHTML = original;
+               emailEl.classList.remove('email-copied');
+            }, 2500);
+         }).catch(console.error);
+      }
    });
 }
 
@@ -231,23 +215,35 @@ const navMenu = document.getElementById('nav-menu');
 const navToggle = document.getElementById('nav-toggle');
 const navClose = document.getElementById('nav-close');
 
+function openMenu() {
+   navMenu && navMenu.classList.add('show-menu');
+   navToggle && navToggle.setAttribute('aria-expanded', 'true');
+}
+
+function closeMenu() {
+   navMenu && navMenu.classList.remove('show-menu');
+   navToggle && navToggle.setAttribute('aria-expanded', 'false');
+}
+
 if (navToggle) {
-   navToggle.addEventListener('click', () => {
-      navMenu && navMenu.classList.add('show-menu');
-   });
+   navToggle.addEventListener('click', openMenu);
 }
 
 if (navClose) {
-   navClose.addEventListener('click', () => {
-      navMenu && navMenu.classList.remove('show-menu');
-   });
+   navClose.addEventListener('click', closeMenu);
 }
 
 const navLinks = document.querySelectorAll('.nav__link');
 navLinks.forEach(link => {
-   link.addEventListener('click', () => {
-      navMenu && navMenu.classList.remove('show-menu');
-   });
+   link.addEventListener('click', closeMenu);
+});
+
+/* Close nav with Escape key */
+document.addEventListener('keydown', (e) => {
+   if (e.key === 'Escape' && navMenu && navMenu.classList.contains('show-menu')) {
+      closeMenu();
+      navToggle && navToggle.focus(); // Return focus to toggle button
+   }
 });
 
 /*=============== CUSTOM CURSOR ===============*/
