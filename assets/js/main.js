@@ -36,6 +36,9 @@ if (homeSocialContainer) {
 }
 
 
+/*=============== MOBILE DETECTION ===============*/
+const isMobile = window.innerWidth < 768;
+
 /*=============== PROJECTS GRID — Scroll Reveal ===============*/
 // IntersectionObserver-based staggered reveal for the 2×2 project grid
 const projectCards = document.querySelectorAll('.projects__card-v2');
@@ -53,8 +56,8 @@ if (projectCards.length > 0 && 'IntersectionObserver' in window) {
          }
       });
    }, {
-      threshold: 0.12,
-      rootMargin: '0px 0px -40px 0px'
+      threshold: isMobile ? 0.05 : 0.12,
+      rootMargin: isMobile ? '0px 0px 50px 0px' : '0px 0px -40px 0px'
    });
 
    projectCards.forEach(card => projectObserver.observe(card));
@@ -72,7 +75,7 @@ if (skillCards.length > 0 && 'IntersectionObserver' in window) {
          if (entry.isIntersecting) {
             // slight stagger using a tiny per-card delay
             const card = entry.target;
-            const delay = Array.from(skillCards).indexOf(card) * 80;
+            const delay = Array.from(skillCards).indexOf(card) * (isMobile ? 30 : 80);
             setTimeout(() => {
                card.classList.remove('sr--hidden');
                card.classList.add('sr--visible');
@@ -80,7 +83,7 @@ if (skillCards.length > 0 && 'IntersectionObserver' in window) {
             skillObserver.unobserve(card);
          }
       });
-   }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+   }, { threshold: isMobile ? 0.05 : 0.1, rootMargin: isMobile ? '0px 0px 50px 0px' : '0px 0px -30px 0px' });
 
    skillCards.forEach(card => skillObserver.observe(card));
 }
@@ -136,7 +139,7 @@ if (certCards.length > 0 && 'IntersectionObserver' in window) {
       entries.forEach(entry => {
          if (entry.isIntersecting) {
             const card = entry.target;
-            const delay = Array.from(certCards).indexOf(card) * 100;
+            const delay = Array.from(certCards).indexOf(card) * (isMobile ? 30 : 100);
             setTimeout(() => {
                card.classList.remove('sr--hidden');
                card.classList.add('sr--visible');
@@ -144,7 +147,7 @@ if (certCards.length > 0 && 'IntersectionObserver' in window) {
             certObserver.unobserve(card);
          }
       });
-   }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+   }, { threshold: isMobile ? 0.05 : 0.08, rootMargin: isMobile ? '0px 0px 50px 0px' : '0px 0px -30px 0px' });
 
    certCards.forEach(card => certObserver.observe(card));
 }
@@ -313,55 +316,55 @@ document.addEventListener('mouseenter', () => {
 /*=============== SCROLL REVEAL ANIMATION ===============*/
 const sr = ScrollReveal({
    origin: 'bottom',
-   distance: '50px',
-   duration: 1100,
-   delay: 150,
+   distance: isMobile ? '30px' : '50px',
+   duration: isMobile ? 800 : 1100,
+   delay: isMobile ? 0 : 150,
    reset: false,
    easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
 });
 
 // Home section
-sr.reveal('.home__greeting',     { delay: 100, origin: 'left' });
-sr.reveal('.home__name',         { delay: 200 });
-sr.reveal('.home__static-role',  { delay: 300 });
-sr.reveal('.home__tech-clip',    { delay: 380 });
-sr.reveal('.home__profession-group', { delay: 430 });
-sr.reveal('.home__credibility',  { delay: 480 });
-sr.reveal('.home__badge-row',    { delay: 520, origin: 'left' });
-sr.reveal('.home__social',       { delay: 580 });
-sr.reveal('.home__cv',           { delay: 640 });
-sr.reveal('.home__img',          { origin: 'right', delay: 300, distance: '80px' });
+sr.reveal('.home__greeting',     { delay: isMobile ? 0 : 100, origin: 'left' });
+sr.reveal('.home__name',         { delay: isMobile ? 0 : 200 });
+sr.reveal('.home__static-role',  { delay: isMobile ? 0 : 300 });
+sr.reveal('.home__tech-clip',    { delay: isMobile ? 50 : 380 });
+sr.reveal('.home__profession-group', { delay: isMobile ? 50 : 430 });
+sr.reveal('.home__credibility',  { delay: isMobile ? 50 : 480 });
+sr.reveal('.home__badge-row',    { delay: isMobile ? 100 : 520, origin: 'left' });
+sr.reveal('.home__social',       { delay: isMobile ? 100 : 580 });
+sr.reveal('.home__cv',           { delay: isMobile ? 100 : 640 });
+sr.reveal('.home__img',          { origin: isMobile ? 'bottom' : 'right', delay: isMobile ? 0 : 300, distance: isMobile ? '30px' : '80px' });
 
 // About section
-sr.reveal('.about__img',             { origin: 'left', delay: 150, distance: '60px' });
-sr.reveal('.about__eyebrow',         { delay: 150, origin: 'left' });
-sr.reveal('.about__title',           { delay: 250 });
-sr.reveal('.about__description-wrap',{ delay: 350 });
-sr.reveal('.about__stats',           { delay: 450 });
-sr.reveal('.about__cta',             { delay: 550, origin: 'left' });
+sr.reveal('.about__img',             { origin: 'left', delay: isMobile ? 0 : 150, distance: isMobile ? '30px' : '60px' });
+sr.reveal('.about__eyebrow',         { delay: isMobile ? 0 : 150, origin: 'left' });
+sr.reveal('.about__title',           { delay: isMobile ? 0 : 250 });
+sr.reveal('.about__description-wrap',{ delay: isMobile ? 50 : 350 });
+sr.reveal('.about__stats',           { delay: isMobile ? 50 : 450 });
+sr.reveal('.about__cta',             { delay: isMobile ? 100 : 550, origin: 'left' });
 
 // Section titles
-sr.reveal('.section__title', { delay: 100 });
+sr.reveal('.section__title', { delay: isMobile ? 0 : 100 });
 
 // Projects (old swiper cards — kept for fallback compatibility)
-sr.reveal('.projects__card', { interval: 150 });
+sr.reveal('.projects__card', { interval: isMobile ? 50 : 150 });
 
 // Projects V2 section header
-sr.reveal('.projects__eyebrow',         { delay: 100 });
-sr.reveal('.projects__section-title',   { delay: 180 });
-sr.reveal('.projects__accent-line',     { delay: 240, distance: '0px' });
-sr.reveal('.projects__section-subtitle',{ delay: 300 });
+sr.reveal('.projects__eyebrow',         { delay: isMobile ? 0 : 100 });
+sr.reveal('.projects__section-title',   { delay: isMobile ? 0 : 180 });
+sr.reveal('.projects__accent-line',     { delay: isMobile ? 50 : 240, distance: '0px' });
+sr.reveal('.projects__section-subtitle',{ delay: isMobile ? 50 : 300 });
 
 // Skills section
-sr.reveal('.skills__eyebrow',           { delay: 100 });
-sr.reveal('.skills__section-title',     { delay: 180 });
-sr.reveal('.skills__accent-line',       { delay: 240, distance: '0px' });
-sr.reveal('.skills__section-subtitle',  { delay: 300 });
-sr.reveal('.skills__focus-card',        { delay: 150, origin: 'right', distance: '40px' });
-sr.reveal('.skills__stat-card',         { interval: 100, origin: 'bottom' });
-sr.reveal('.skills__stack-title',       { delay: 100 });
-sr.reveal('.skills__stack-line',        { delay: 160, distance: '0px' });
-sr.reveal('.skills__chip',              { interval: 40, origin: 'bottom', distance: '20px' });
+sr.reveal('.skills__eyebrow',           { delay: isMobile ? 0 : 100 });
+sr.reveal('.skills__section-title',     { delay: isMobile ? 0 : 180 });
+sr.reveal('.skills__accent-line',       { delay: isMobile ? 50 : 240, distance: '0px' });
+sr.reveal('.skills__section-subtitle',  { delay: isMobile ? 50 : 300 });
+sr.reveal('.skills__focus-card',        { delay: isMobile ? 0 : 150, origin: isMobile ? 'bottom' : 'right', distance: isMobile ? '30px' : '40px' });
+sr.reveal('.skills__stat-card',         { interval: isMobile ? 50 : 100, origin: 'bottom' });
+sr.reveal('.skills__stack-title',       { delay: isMobile ? 0 : 100 });
+sr.reveal('.skills__stack-line',        { delay: isMobile ? 0 : 160, distance: '0px' });
+sr.reveal('.skills__chip',              { interval: isMobile ? 20 : 40, origin: 'bottom', distance: '20px' });
 
 // Contact — Premium slide-in animations (left col from left, right col from right)
 (function () {
@@ -375,7 +378,7 @@ sr.reveal('.skills__chip',              { interval: 40, origin: 'bottom', distan
       if (entry.isIntersecting) {
         const el = entry.target;
         // Slight stagger: right column appears 150ms after left
-        const delay = el === contactRight ? 150 : 0;
+        const delay = el === contactRight ? (isMobile ? 50 : 150) : 0;
         setTimeout(() => {
           el.classList.remove('sr--hidden');
           el.classList.add('sr--visible');
@@ -383,7 +386,7 @@ sr.reveal('.skills__chip',              { interval: 40, origin: 'bottom', distan
         contactColObserver.unobserve(el);
       }
     });
-  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+  }, { threshold: isMobile ? 0.05 : 0.08, rootMargin: isMobile ? '0px 0px 50px 0px' : '0px 0px -30px 0px' });
 
   [contactLeft, contactRight].forEach(el => {
     if (el) {
@@ -406,30 +409,30 @@ sr.reveal('.skills__chip',              { interval: 40, origin: 'bottom', distan
             setTimeout(() => {
               card.classList.remove('sr--hidden');
               card.classList.add('sr--visible');
-            }, idx * 90);
+            }, idx * (isMobile ? 30 : 90));
           });
           platformObserver.disconnect();
         }
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+    }, { threshold: isMobile ? 0.05 : 0.1, rootMargin: isMobile ? '0px 0px 50px 0px' : '0px 0px -30px 0px' });
 
     if (socialSection) platformObserver.observe(socialSection);
   }
 }());
 
 // Keep ScrollReveal for the section header only
-sr.reveal('.contact__header', { delay: 80, origin: 'bottom', distance: '30px' });
-sr.reveal('.contact__social-title', { delay: 100, origin: 'bottom', distance: '20px' });
-sr.reveal('.contact__social-accent', { delay: 160, distance: '0px' });
+sr.reveal('.contact__header', { delay: isMobile ? 0 : 80, origin: 'bottom', distance: isMobile ? '20px' : '30px' });
+sr.reveal('.contact__social-title', { delay: isMobile ? 0 : 100, origin: 'bottom', distance: '20px' });
+sr.reveal('.contact__social-accent', { delay: isMobile ? 0 : 160, distance: '0px' });
 
 // CTA
-sr.reveal('.cta__container', { origin: 'bottom', delay: 150, distance: '40px', scale: 0.95 });
+sr.reveal('.cta__container', { origin: 'bottom', delay: isMobile ? 0 : 150, distance: isMobile ? '20px' : '40px', scale: 0.95 });
 
 // Certifications section header
-sr.reveal('.certifications__eyebrow',          { delay: 100 });
-sr.reveal('.certifications__section-title',    { delay: 180 });
-sr.reveal('.certifications__accent-line',      { delay: 240, distance: '0px' });
-sr.reveal('.certifications__section-subtitle', { delay: 300 });
+sr.reveal('.certifications__eyebrow',          { delay: isMobile ? 0 : 100 });
+sr.reveal('.certifications__section-title',    { delay: isMobile ? 0 : 180 });
+sr.reveal('.certifications__accent-line',      { delay: isMobile ? 50 : 240, distance: '0px' });
+sr.reveal('.certifications__section-subtitle', { delay: isMobile ? 50 : 300 });
 
 /*=============== PARALLAX AMBIENT GLOW ON MOUSE MOVE ===============*/
 const homeBlob = document.querySelector('.home__blob-inner');
