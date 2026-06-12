@@ -45,10 +45,7 @@
   --z-tooltip: 10;
   --z-fixed: 100;
 
-  /* Anchor scroll offsets — About uses negative offset for vertically centered content */
-  --about-scroll-offset: -15vh;
-  /* Projects header is top-aligned; align to section top (html scroll-padding handles navbar) */
-  --projects-scroll-offset: 0;
+
 }
 
 /*========== Responsive typography ==========*/
@@ -658,7 +655,7 @@ body::before {
 .projects {
   position: relative;
   padding-block: 2.5rem 4rem;
-  scroll-margin-top: var(--projects-scroll-offset);
+
 }
 
 .projects::before {
@@ -1233,9 +1230,6 @@ body::before {
 
 /* ---- Responsive: scroll anchor fine-tuning ---- */
 @media screen and (max-width: 767px) {
-  :root {
-    --about-scroll-offset: -10vh;
-  }
 
   .projects {
     padding-block: 2rem 3rem;
@@ -1392,7 +1386,7 @@ body::before {
   display: flex;
   align-items: center;
   padding-block: 2rem 4rem;
-  scroll-margin-top: var(--about-scroll-offset);
+
 }
 
 .about::before {
@@ -1770,7 +1764,7 @@ body::before {
   position: relative;
   padding-block: 2.5rem 3.5rem;
   overflow: hidden;
-  scroll-margin-top: 0;
+
 }
 
 /* Top divider glow line */
@@ -2365,9 +2359,7 @@ body::before {
   position: relative;
   padding-block: 2.5rem 4rem;
   overflow: hidden;
-  /* scroll-margin-top intentionally omitted: the global html { scroll-padding-top }
-     already handles navbar offset perfectly, matching Projects and Skills behavior. */
-  scroll-margin-top: 0;
+
 }
 
 /* Top divider glow line */
@@ -2992,13 +2984,16 @@ body::before {
 
   .nav__menu {
     position: static;
-    background-color: transparent;
+    background: transparent;
     padding: 0;
     box-shadow: none;
     width: auto;
     top: 0;
     backdrop-filter: none;
-    border-bottom: none;
+    -webkit-backdrop-filter: none;
+    border: none;
+    opacity: 1;
+    pointer-events: auto;
   }
 
   .nav__close,
@@ -3168,7 +3163,7 @@ body::before {
   position: relative;
   padding-block: 2.5rem 4rem;
   overflow: hidden;
-  scroll-margin-top: var(--projects-scroll-offset);
+
 }
 
 .contact__bg-glow {
