@@ -24,7 +24,7 @@
 
 <!-- ═══════════════ DEPLOYMENT / STATUS BADGES ═══════════════ -->
 
-![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-Deployed-222222?style=for-the-badge&logo=github&logoColor=white)
+![Netlify](https://img.shields.io/badge/Netlify-Deployed-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)
 ![Open Source](https://img.shields.io/badge/Open_Source-❤️-red?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
 ![Last Commit](https://img.shields.io/github/last-commit/rajayush6200/ayush-raj-portfolio?style=for-the-badge&color=7C3AED&label=Last+Commit)
@@ -32,9 +32,15 @@
 
 <br/>
 
+<!-- ═══════════════ LIVE DEMO BANNER ═══════════════ -->
+
+### 🚀 [**→ View Live Portfolio: ayushraj-dev.netlify.app**](https://ayushraj-dev.netlify.app/) ←
+
+<br/>
+
 <!-- ═══════════════ CTA LINKS ═══════════════ -->
 
-[![🌐 Live Portfolio](https://img.shields.io/badge/🌐_Live_Portfolio-Visit_Now-7C3AED?style=for-the-badge)](https://rajayush6200.github.io/ayush-raj-portfolio/)
+[![🌐 Live Portfolio](https://img.shields.io/badge/🌐_Live_Portfolio-ayushraj--dev.netlify.app-7C3AED?style=for-the-badge)](https://ayushraj-dev.netlify.app/)
 [![📁 Repository](https://img.shields.io/badge/📁_Repository-View_Code-222222?style=for-the-badge&logo=github)](https://github.com/rajayush6200/ayush-raj-portfolio)
 [![📧 Contact](https://img.shields.io/badge/📧_Contact-Get_In_Touch-0ea5e9?style=for-the-badge)](mailto:rajayush6200@gmail.com)
 
@@ -66,8 +72,8 @@
 | 02 | [Live Website](#-live-website) | Production URL, deployment details |
 | 03 | [Screenshots](#-screenshots) | Visual preview of all sections |
 | 04 | [Key Features](#-key-features) | Detailed feature matrix |
-| 05 | [Technology Stack](#-technology-stack) | All tools, libraries, and frameworks |
-| 06 | [System Architecture](#-system-architecture) | Flow & architecture diagrams |
+| 05 | [Technology Stack](#%EF%B8%8F-technology-stack) | All tools, libraries, and frameworks |
+| 06 | [System Architecture](#%EF%B8%8F-system-architecture) | Flow & architecture diagrams |
 | 07 | [Project Structure](#-project-structure) | Repository folder tree with explanations |
 | 08 | [Featured Projects](#-featured-projects) | Showcase of production applications |
 | 09 | [Performance Optimization](#-performance-optimization) | Speed, SEO, and efficiency strategies |
@@ -75,7 +81,7 @@
 | 11 | [SEO & Meta Strategy](#-seo--meta-strategy) | Tags, sitemaps, and structured data |
 | 12 | [Accessibility](#-accessibility) | WCAG compliance and inclusive design |
 | 13 | [Deployment Guide](#-deployment-guide) | Step-by-step deployment instructions |
-| 14 | [Future Roadmap](#-future-roadmap) | Planned features and improvements |
+| 14 | [Future Roadmap](#%EF%B8%8F-future-roadmap) | Planned features and improvements |
 | 15 | [Developer Profile](#-developer-profile) | About Ayush Raj |
 | 16 | [Support](#-support) | How to contribute and show support |
 | 17 | [License](#-license) | Licensing information |
@@ -140,7 +146,7 @@ This repository is not a simple static website — it is a **production-grade pe
 
 | Environment | URL | Status |
 |-------------|-----|--------|
-| 🟢 **Production** | [rajayush6200.github.io/ayush-raj-portfolio](https://rajayush6200.github.io/ayush-raj-portfolio/) | ![Live](https://img.shields.io/badge/Status-Live-brightgreen?style=flat-square) |
+| 🟢 **Production** | [ayushraj-dev.netlify.app](https://ayushraj-dev.netlify.app/) | ![Live](https://img.shields.io/badge/Status-Live-brightgreen?style=flat-square) |
 | 📁 **Repository** | [github.com/rajayush6200/ayush-raj-portfolio](https://github.com/rajayush6200/ayush-raj-portfolio) | ![Public](https://img.shields.io/badge/Visibility-Public-blue?style=flat-square) |
 
 </div>
@@ -148,12 +154,12 @@ This repository is not a simple static website — it is a **production-grade pe
 ### Deployment Details
 
 ```
-Platform  : GitHub Pages
-Branch    : main
-Auto-deploy: On every push to main
-CDN       : GitHub's global CDN edge network
-SSL/TLS   : Enforced HTTPS (Let's Encrypt via GitHub)
-Domain    : rajayush6200.github.io/ayush-raj-portfolio/
+Platform   : Netlify
+Branch     : main
+Auto-deploy: On every push to main (Netlify Git integration)
+CDN        : Netlify's global edge network (100+ PoPs worldwide)
+SSL/TLS    : Enforced HTTPS (auto-provisioned by Netlify)
+Domain     : ayushraj-dev.netlify.app
 ```
 
 <br/>
@@ -256,7 +262,6 @@ Domain    : rajayush6200.github.io/ayush-raj-portfolio/
 | 🏗️ **Project Showcase** | 4 production apps with live demo, GitHub, domain badge, and stack pills | ✅ Implemented |
 | 🏆 **Certification Showcase** | Oracle Cloud badges with verification links and category tags | ✅ Implemented |
 | 📬 **Contact Form** | EmailJS-powered real-time form with field validation and status feedback | ✅ Implemented |
-| 📋 **Copy Email** | One-click clipboard copy for email address in contact section | ✅ Implemented |
 | 🎯 **Scroll Progress Bar** | Fixed gradient progress indicator at top of viewport | ✅ Implemented |
 | 🖱️ **Custom Cursor** | Dual-ball magnetic cursor with hover expand — desktop only | ✅ Implemented |
 | 🌊 **Glassmorphism Cards** | `backdrop-filter` + layered gradients with purple glow on hover | ✅ Implemented |
@@ -297,7 +302,7 @@ Domain    : rajayush6200.github.io/ayush-raj-portfolio/
 ### 🎨 Frontend
 
 | Technology | Version / Spec | Purpose |
-|------------|---------------|---------|
+|------------|---------------|---------| 
 | ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white) **HTML5** | Living Standard | Semantic document structure, accessibility |
 | ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white) **CSS3** | Custom Properties + Grid + Flexbox | Styling, layout, animations, glassmorphism |
 | ![JavaScript](https://img.shields.io/badge/JavaScript-ES2022-F7DF1E?style=flat-square&logo=javascript&logoColor=black) **JavaScript** | ES2022 (Vanilla) | Interactivity, scroll logic, cursor, animations |
@@ -315,7 +320,7 @@ Domain    : rajayush6200.github.io/ayush-raj-portfolio/
 | ![EmailJS](https://img.shields.io/badge/EmailJS-Contact_Form-orange?style=flat-square) **EmailJS** | Contact form email delivery | Client-side SDK, no backend required |
 | **Google Fonts** | Typography | Non-render-blocking `media="print"` load |
 | **Cloudflare CDN** | RemixIcon & Swiper delivery | `cdnjs.cloudflare.com` |
-| **jsDelivr CDN** | ScrollReveal delivery | `cdn.jsdelivr.net` |
+| **jsDelivr CDN** | ScrollReveal & Anime.js delivery | `cdn.jsdelivr.net` |
 
 <br/>
 
@@ -323,17 +328,17 @@ Domain    : rajayush6200.github.io/ayush-raj-portfolio/
 
 | Tool | Purpose |
 |------|---------|
-| ![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-222222?style=flat-square&logo=github) **GitHub Pages** | Static site hosting with global CDN |
-| ![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-CI/CD-2088FF?style=flat-square&logo=githubactions&logoColor=white) **GitHub Actions** | Automated deployment on `main` push |
+| ![Netlify](https://img.shields.io/badge/Netlify-00C7B7?style=flat-square&logo=netlify&logoColor=white) **Netlify** | Static site hosting with global edge CDN, auto-deploy on push |
+| ![GitHub](https://img.shields.io/badge/GitHub-222222?style=flat-square&logo=github) **GitHub** | Version control & source repository |
 | **Git** | Version control, branching strategy |
-| **HTTPS / TLS** | Auto-enforced via GitHub Pages |
+| **HTTPS / TLS** | Auto-enforced via Netlify |
 
 <br/>
 
 ### 🎨 Design System
 
 | Category | Specification |
-|----------|--------------|
+|----------|--------------| 
 | **Color System** | HSL-based custom properties with `--hue` theming variable |
 | **Typography Scale** | `--bigger` → `--smaller` fluid font sizes via CSS custom properties |
 | **Spacing** | `rem`-based consistent spacing scale |
@@ -492,7 +497,7 @@ ayush-raj-portfolio/
     │   └── swiper-bundle.min.css  # Swiper carousel styles
     │
     ├── 📁 js/
-    │   ├── main.js                # Core application logic (~24KB, 650+ lines)
+    │   ├── main.js                # Core application logic (~24KB, 660+ lines)
     │   ├── swiper-bundle.min.js   # Swiper carousel library
     │   └── scrollreveal.min.js    # ScrollReveal animation library
     │
@@ -737,13 +742,15 @@ The navigation alignment uses a **JS-powered precise scroll engine**:
 const firstVisible = Array.from(target.children)
   .find(el => !el.hasAttribute('aria-hidden')) || target;
 
+// 40px breathing room — section eyebrow/title lands visibly below the fixed header
+const BREATHING = 40;
 const top = firstVisible.getBoundingClientRect().top
-          + window.scrollY - getHeaderHeight() - 24;
+          + window.scrollY - getHeaderHeight() - BREATHING;
 
 window.scrollTo({ top, behavior: 'smooth' });
 ```
 
-This ensures the **eyebrow/title text** appears right below the navbar — not after 96px of `padding-block-start`.
+This ensures the **eyebrow/title text** appears right below the navbar — not immediately after the viewport edge.
 
 </details>
 
@@ -765,7 +772,7 @@ This ensures the **eyebrow/title text** appears right below the navbar — not a
 ### Meta Tags Implementation
 
 | Tag Type | Tags Implemented |
-|----------|-----------------|
+|----------|-----------------| 
 | **Primary Meta** | `<title>`, `description`, `author`, `keywords`, `theme-color`, `robots` |
 | **Open Graph** | `og:type`, `og:url`, `og:title`, `og:description`, `og:image`, `og:site_name`, `og:locale` |
 | **Twitter Card** | `twitter:card`, `twitter:site`, `twitter:creator`, `twitter:title`, `twitter:description`, `twitter:image` |
@@ -784,7 +791,7 @@ This ensures the **eyebrow/title text** appears right below the navbar — not a
 | **Heading Hierarchy** | Single `<h1>` (name), `<h2>` per section, `<h3>` per project |
 | **Alt Text** | Descriptive `alt` attributes on every image |
 | **Skip Link** | `<a href="#main-content">Skip to main content</a>` |
-| **Canonical URL** | `https://rajayush6200.github.io/ayush-raj-portfolio/` |
+| **Canonical URL** | `https://ayushraj-dev.netlify.app/` |
 | **Structured Data** | Person schema embedded via meta |
 
 <br/>
@@ -793,8 +800,8 @@ This ensures the **eyebrow/title text** appears right below the navbar — not a
 
 ```
 Title   : Ayush Raj — Full-Stack Developer | MERN Stack Engineer
-Image   : assets/img/home-perfil.png (served from GitHub Pages CDN)
-URL     : https://rajayush6200.github.io/ayush-raj-portfolio/
+Image   : assets/img/home-perfil.png (served from Netlify CDN)
+URL     : https://ayushraj-dev.netlify.app/
 Twitter : summary_large_image card for maximum social preview area
 ```
 
@@ -873,7 +880,9 @@ Twitter : summary_large_image card for maximum social preview area
 
 <br/>
 
-### Option 1: GitHub Pages (Current — Recommended)
+### Option 1: Netlify (Current — Recommended)
+
+The portfolio is live at **[ayushraj-dev.netlify.app](https://ayushraj-dev.netlify.app/)** via Netlify's Git integration.
 
 ```bash
 # 1. Clone the repository
@@ -886,16 +895,17 @@ cd ayush-raj-portfolio
 git add -A
 git commit -m "feat: describe your change"
 
-# 4. Push to main — GitHub Pages auto-deploys
+# 4. Push to main — Netlify auto-deploys via webhook
 git push origin main
 ```
 
-**GitHub Pages Settings:**
+**Netlify Site Settings:**
 ```
-Repository → Settings → Pages
-Source     : Deploy from branch
-Branch     : main / (root)
-URL        : https://rajayush6200.github.io/ayush-raj-portfolio/
+Dashboard  : app.netlify.com
+Site name  : ayushraj-dev
+Live URL   : https://ayushraj-dev.netlify.app/
+Branch     : main (auto-deploy on push)
+Build      : Not required (pure static HTML/CSS/JS)
 ```
 
 <br/>
@@ -903,8 +913,7 @@ URL        : https://rajayush6200.github.io/ayush-raj-portfolio/
 ### Option 2: Netlify Drop (Zero Config)
 
 ```bash
-# 1. Build / prepare the static files
-# (No build step needed — pure HTML/CSS/JS)
+# 1. No build step needed — pure HTML/CSS/JS
 
 # 2. Go to netlify.com/drop
 # 3. Drag and drop the entire repository folder
@@ -935,24 +944,19 @@ netlify link          # Link to existing site
 
 <br/>
 
-### Option 4: Custom Domain Setup
+### Option 4: GitHub Pages
 
 ```bash
-# If using GitHub Pages with custom domain:
-# 1. Add CNAME file to repository root
-echo "yourdomain.com" > CNAME
-git add CNAME && git commit -m "chore: add CNAME for custom domain"
-git push
+# 1. Clone and push to your fork
+git clone https://github.com/rajayush6200/ayush-raj-portfolio.git
+cd ayush-raj-portfolio
+git push origin main
 
-# 2. In your domain registrar, add DNS records:
-# A     @    185.199.108.153
-# A     @    185.199.109.153
-# A     @    185.199.110.153
-# A     @    185.199.111.153
-# CNAME www  rajayush6200.github.io
-
-# 3. In GitHub: Settings → Pages → Custom domain → Enter domain → Save
-# 4. Enable "Enforce HTTPS" checkbox
+# 2. In GitHub repository settings:
+# Repository → Settings → Pages
+# Source     : Deploy from branch
+# Branch     : main / (root)
+# Your site  : https://<your-username>.github.io/ayush-raj-portfolio/
 ```
 
 <br/>
@@ -1039,7 +1043,7 @@ timeline
 
 | Platform | Link |
 |----------|------|
-| 🌐 **Portfolio** | [rajayush6200.github.io/ayush-raj-portfolio](https://rajayush6200.github.io/ayush-raj-portfolio/) |
+| 🌐 **Portfolio** | [ayushraj-dev.netlify.app](https://ayushraj-dev.netlify.app/) |
 | 💼 **LinkedIn** | [linkedin.com/in/rajayush6200](https://www.linkedin.com/in/rajayush6200/) |
 | 🐙 **GitHub** | [github.com/rajayush6200](https://github.com/rajayush6200) |
 | 🐦 **Twitter / X** | [@AyushRaj444](https://x.com/@AyushRaj444) |
@@ -1126,7 +1130,7 @@ If you find this portfolio impressive, useful, or inspiring — please consider 
 ```
 MIT License
 
-Copyright (c) 2025 Ayush Raj
+Copyright (c) 2026 Ayush Raj
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -1171,6 +1175,6 @@ SOFTWARE.
 
 <br/>
 
-*© 2025 Ayush Raj · MIT License · Made with ❤️ and ☕*
+*© 2026 Ayush Raj · MIT License · Made with ❤️ and ☕*
 
 </div>
