@@ -37,13 +37,165 @@ if (homeSocialContainer) {
 
 
 /*=============== MOBILE DETECTION ===============*/
+// Detect touch/mobile devices — used throughout to gate heavy JS features
 const isMobile = window.innerWidth < 768;
+const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/*=============== PROJECTS GRID — Scroll Reveal ===============*/
-// IntersectionObserver-based staggered reveal for the 2×2 project grid
+// True if we should skip animations (mobile OR touch OR reduced motion)
+const skipAnimations = isMobile || isTouchDevice || isReducedMotion;
+
+
+/*=============== NAV MENU TOGGLE ===============*/
+const navMenu = document.getElementById('nav-menu');
+const navToggle = document.getElementById('nav-toggle');
+const navClose = document.getElementById('nav-close');
+
+function openMenu() {
+   navMenu && navMenu.classList.add('show-menu');
+   navToggle && navToggle.setAttribute('aria-expanded', 'true');
+}
+
+function closeMenu() {
+   navMenu && navMenu.classList.remove('show-menu');
+   navToggle && navToggle.setAttribute('aria-expanded', 'false');
+}
+
+if (navToggle) {
+   navToggle.addEventListener('click', openMenu);
+}
+
+if (navClose) {
+   navClose.addEventListener('click', closeMenu);
+}
+
+/* Close nav with Escape key */
+document.addEventListener('keydown', (e) => {
+   if (e.key === 'Escape' && navMenu && navMenu.classList.contains('show-menu')) {
+      closeMenu();
+      navToggle && navToggle.focus();
+   }
+});
+
+
+/*=============== NAVIGATION: PRECISE SCROLL-TO with header offset ===============*/
+/*
+   Problem: when a nav link is clicked on mobile the browser's native
+   scroll-padding-top (set in CSS) sometimes misses by a few pixels
+   because the fixed header height can vary.  We intercept every nav link
+   click and manually scroll so the section top sits exactly below the header.
+*/
+const NAV_LINKS = document.querySelectorAll('.nav__link');
+const HEADER_EL = document.getElementById('header');
+
+function getHeaderHeight() {
+   return HEADER_EL ? HEADER_EL.getBoundingClientRect().height : 56;
+}
+
+function scrollToSection(targetId) {
+   const target = document.getElementById(targetId);
+   if (!target) return;
+
+   /*
+    * The problem: sections like Projects, Skills, Certifications have
+    * large padding-block-start (up to 6rem on desktop). Scrolling to the
+    * *section element* lands the page at the section's outer top edge,
+    * and the eyebrow/title text only appears after all that top padding.
+    *
+    * Fix: scroll to the first *visible* content child instead —
+    * the __header div that holds the eyebrow + section title.
+    * Decorative blobs have aria-hidden="true" so we skip those.
+    */
+   const firstVisible = Array.from(target.children).find(
+      el => !el.hasAttribute('aria-hidden')
+   ) || target;
+
+   // 24px breathing room so the header bar doesn't clip the content
+   const BREATHING = 24;
+   const top = firstVisible.getBoundingClientRect().top
+               + window.scrollY
+               - getHeaderHeight()
+               - BREATHING;
+
+   window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+}
+
+
+NAV_LINKS.forEach(link => {
+   link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      if (href && href.startsWith('#')) {
+         e.preventDefault();
+         const targetId = href.slice(1);
+         closeMenu();    // close mobile menu first
+         // Short delay on mobile so the menu slide-out doesn't conflict
+         if (isMobile) {
+            setTimeout(() => scrollToSection(targetId), 50);
+         } else {
+            scrollToSection(targetId);
+         }
+      } else {
+         closeMenu();
+      }
+   });
+});
+
+// Also handle all other in-page anchor links (e.g. About CTA → #projects, CTA buttons)
+document.querySelectorAll('a[href^="#"]:not(.nav__link)').forEach(link => {
+   link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      if (href && href.length > 1) {
+         e.preventDefault();
+         const targetId = href.slice(1);
+         scrollToSection(targetId);
+      }
+   });
+});
+
+
+
+/*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
+const sections = document.querySelectorAll('section[id]');
+
+function scrollActive() {
+   const scrollDown = window.scrollY;
+   const headerH = getHeaderHeight();
+
+   sections.forEach(current => {
+      const sectionHeight = current.offsetHeight;
+      const sectionTop = current.offsetTop - headerH - 20;
+      const sectionId = current.getAttribute('id');
+      const sectionsClass = document.querySelector(`.nav__link[href*="${sectionId}"]`);
+
+      if (scrollDown > sectionTop && scrollDown <= sectionTop + sectionHeight) {
+         sectionsClass && sectionsClass.classList.add('active-link');
+      } else {
+         sectionsClass && sectionsClass.classList.remove('active-link');
+      }
+   });
+}
+
+window.addEventListener('scroll', scrollActive, { passive: true });
+
+/*=============== SCROLL HEADER (GLASS EFFECT) ===============*/
+function scrollHeader() {
+   const header = document.getElementById('header');
+   if (header) {
+      if (window.scrollY >= 50) {
+         header.classList.add('scroll-header');
+      } else {
+         header.classList.remove('scroll-header');
+      }
+   }
+}
+
+window.addEventListener('scroll', scrollHeader, { passive: true });
+
+
+/*=============== PROJECTS GRID — Scroll Reveal (desktop only) ===============*/
 const projectCards = document.querySelectorAll('.projects__card-v2');
 
-if (!isMobile && projectCards.length > 0 && 'IntersectionObserver' in window) {
+if (!skipAnimations && projectCards.length > 0 && 'IntersectionObserver' in window) {
    // Set initial hidden state
    projectCards.forEach(card => card.classList.add('sr--hidden'));
 
@@ -63,17 +215,17 @@ if (!isMobile && projectCards.length > 0 && 'IntersectionObserver' in window) {
    projectCards.forEach(card => projectObserver.observe(card));
 }
 
+
 /*=============== SKILLS — Scroll Reveal & Count-Up ===============*/
 
-// --- Skill cards stagger scroll reveal ---
+// --- Skill cards stagger scroll reveal (desktop only) ---
 const skillCards = document.querySelectorAll('.skills__card');
-if (!isMobile && skillCards.length > 0 && 'IntersectionObserver' in window) {
+if (!skipAnimations && skillCards.length > 0 && 'IntersectionObserver' in window) {
    skillCards.forEach(card => card.classList.add('sr--hidden'));
 
    const skillObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry, idx) => {
+      entries.forEach((entry) => {
          if (entry.isIntersecting) {
-            // slight stagger using a tiny per-card delay
             const card = entry.target;
             const delay = Array.from(skillCards).indexOf(card) * 80;
             setTimeout(() => {
@@ -90,11 +242,9 @@ if (!isMobile && skillCards.length > 0 && 'IntersectionObserver' in window) {
 
 // --- Count-up animation for Skills stat numbers ---
 function animateCountUp(el, target, suffix, duration) {
-   const start = 0;
-   const step = Math.ceil(duration / target) || 1;
    const fps  = 16; // ~60fps
    const increment = target / (duration / fps);
-   let current = start;
+   let current = 0;
 
    const timer = setInterval(() => {
       current += increment;
@@ -107,32 +257,43 @@ function animateCountUp(el, target, suffix, duration) {
 }
 
 const skillStatEls = document.querySelectorAll('.skills__stat-number[data-target]');
-if (skillStatEls.length > 0 && 'IntersectionObserver' in window) {
-   let counted = false;
 
-   const statObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-         if (entry.isIntersecting && !counted) {
-            counted = true;
-            skillStatEls.forEach((el, i) => {
-               const target = parseInt(el.dataset.target, 10);
-               const suffix = el.dataset.suffix || '';
-               const delay  = i * 120;
-               setTimeout(() => animateCountUp(el, target, suffix, 900), delay);
-            });
-            statObserver.disconnect();
-         }
+if (skillStatEls.length > 0) {
+   if (skipAnimations) {
+      // Mobile: immediately show the final values — no animation
+      skillStatEls.forEach(el => {
+         const target = parseInt(el.dataset.target, 10);
+         const suffix = el.dataset.suffix || '';
+         el.textContent = target + suffix;
       });
-   }, { threshold: 0.35 });
+   } else if ('IntersectionObserver' in window) {
+      let counted = false;
 
-   const statsGrid = document.querySelector('.skills__stats-grid');
-   if (statsGrid) statObserver.observe(statsGrid);
+      const statObserver = new IntersectionObserver((entries) => {
+         entries.forEach(entry => {
+            if (entry.isIntersecting && !counted) {
+               counted = true;
+               skillStatEls.forEach((el, i) => {
+                  const target = parseInt(el.dataset.target, 10);
+                  const suffix = el.dataset.suffix || '';
+                  const delay  = i * 120;
+                  setTimeout(() => animateCountUp(el, target, suffix, 900), delay);
+               });
+               statObserver.disconnect();
+            }
+         });
+      }, { threshold: 0.35 });
+
+      const statsGrid = document.querySelector('.skills__stats-grid');
+      if (statsGrid) statObserver.observe(statsGrid);
+   }
 }
 
-/*=============== CERTIFICATIONS — Scroll Reveal ===============*/
+
+/*=============== CERTIFICATIONS — Scroll Reveal (desktop only) ===============*/
 const certCards = document.querySelectorAll('.certifications__card');
 
-if (!isMobile && certCards.length > 0 && 'IntersectionObserver' in window) {
+if (!skipAnimations && certCards.length > 0 && 'IntersectionObserver' in window) {
    certCards.forEach(card => card.classList.add('sr--hidden'));
 
    const certObserver = new IntersectionObserver((entries) => {
@@ -151,6 +312,7 @@ if (!isMobile && certCards.length > 0 && 'IntersectionObserver' in window) {
 
    certCards.forEach(card => certObserver.observe(card));
 }
+
 
 /*=============== COPY EMAIL IN CONTACT ===============*/
 const copyBtn = document.getElementById('contact-copy');
@@ -176,294 +338,225 @@ if (copyBtn && emailEl) {
 }
 
 
+/*=============== CUSTOM CURSOR (desktop only) ===============*/
+if (!isTouchDevice) {
+   const cursorBig = document.querySelector('.cursor__ball--big');
+   const cursorSmall = document.querySelector('.cursor__ball--small');
 
-/*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
-const sections = document.querySelectorAll('section[id]');
+   let bigX = 0, bigY = 0;
+   let mouseX = 0, mouseY = 0;
 
-function scrollActive() {
-   const scrollDown = window.scrollY;
-
-   sections.forEach(current => {
-      const sectionHeight = current.offsetHeight;
-      const sectionTop = current.offsetTop - 100;
-      const sectionId = current.getAttribute('id');
-      const sectionsClass = document.querySelector(`.nav__link[href*="${sectionId}"]`);
-
-      if (scrollDown > sectionTop && scrollDown <= sectionTop + sectionHeight) {
-         sectionsClass && sectionsClass.classList.add('active-link');
-      } else {
-         sectionsClass && sectionsClass.classList.remove('active-link');
-      }
-   });
-}
-
-window.addEventListener('scroll', scrollActive);
-
-/*=============== SCROLL HEADER (GLASS EFFECT) ===============*/
-function scrollHeader() {
-   const header = document.getElementById('header');
-   if (header) {
-      if (window.scrollY >= 50) {
-         header.classList.add('scroll-header');
-      } else {
-         header.classList.remove('scroll-header');
-      }
-   }
-}
-
-window.addEventListener('scroll', scrollHeader);
-
-/*=============== NAV MENU TOGGLE ===============*/
-const navMenu = document.getElementById('nav-menu');
-const navToggle = document.getElementById('nav-toggle');
-const navClose = document.getElementById('nav-close');
-
-function openMenu() {
-   navMenu && navMenu.classList.add('show-menu');
-   navToggle && navToggle.setAttribute('aria-expanded', 'true');
-}
-
-function closeMenu() {
-   navMenu && navMenu.classList.remove('show-menu');
-   navToggle && navToggle.setAttribute('aria-expanded', 'false');
-}
-
-if (navToggle) {
-   navToggle.addEventListener('click', openMenu);
-}
-
-if (navClose) {
-   navClose.addEventListener('click', closeMenu);
-}
-
-const navLinks = document.querySelectorAll('.nav__link');
-navLinks.forEach(link => {
-   link.addEventListener('click', closeMenu);
-});
-
-/* Close nav with Escape key */
-document.addEventListener('keydown', (e) => {
-   if (e.key === 'Escape' && navMenu && navMenu.classList.contains('show-menu')) {
-      closeMenu();
-      navToggle && navToggle.focus(); // Return focus to toggle button
-   }
-});
-
-/*=============== CUSTOM CURSOR ===============*/
-const cursorBig = document.querySelector('.cursor__ball--big');
-const cursorSmall = document.querySelector('.cursor__ball--small');
-
-let bigX = 0, bigY = 0;
-let smallX = 0, smallY = 0;
-let mouseX = 0, mouseY = 0;
-
-document.addEventListener('mousemove', (e) => {
-   mouseX = e.clientX;
-   mouseY = e.clientY;
-
-   smallX = mouseX;
-   smallY = mouseY;
-   if (cursorSmall) {
-      cursorSmall.style.transform = `translate(${smallX - 5}px, ${smallY - 5}px)`;
-   }
-});
-
-function animateCursor() {
-   bigX += (mouseX - bigX) * 0.12;
-   bigY += (mouseY - bigY) * 0.12;
-
-   if (cursorBig) {
-      cursorBig.style.transform = `translate(${bigX - 15}px, ${bigY - 15}px)`;
-   }
-
-   requestAnimationFrame(animateCursor);
-}
-
-animateCursor();
-
-const hoverables = document.querySelectorAll(
-   'a, button, .nav__toggle, .nav__close, .projects__card, .projects__card-v2, .projects__btn-primary, .projects__btn-secondary, .home__social-link, .certifications__card, .certifications__btn, .contact__platform-card, .contact__info-card, .contact__form-card, .contact__submit-btn'
-);
-
-hoverables.forEach(el => {
-   el.addEventListener('mouseenter', () => {
-      if (cursorBig) {
-         cursorBig.querySelector('circle').setAttribute('r', 20);
-         cursorBig.style.opacity = '0.35';
-         cursorBig.style.mixBlendMode = 'screen';
-      }
-   });
-
-   el.addEventListener('mouseleave', () => {
-      if (cursorBig) {
-         cursorBig.querySelector('circle').setAttribute('r', 12);
-         cursorBig.style.opacity = '1';
-         cursorBig.style.mixBlendMode = 'difference';
-      }
-   });
-});
-
-document.addEventListener('mouseleave', () => {
-   if (cursorBig) cursorBig.classList.add('cursor--hidden');
-   if (cursorSmall) cursorSmall.classList.add('cursor--hidden');
-});
-
-document.addEventListener('mouseenter', () => {
-   if (cursorBig) cursorBig.classList.remove('cursor--hidden');
-   if (cursorSmall) cursorSmall.classList.remove('cursor--hidden');
-});
-
-/*=============== SCROLL REVEAL ANIMATION ===============*/
-const sr = ScrollReveal({
-   origin: 'bottom',
-   distance: '50px',
-   duration: 1100,
-   delay: 150,
-   reset: false,
-   mobile: false, // Disables all scroll reveal animations natively on mobile devices
-   easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
-});
-
-if (!isMobile) {
-  // Home section
-  sr.reveal('.home__greeting',     { delay: 100, origin: 'left' });
-  sr.reveal('.home__name',         { delay: 200 });
-  sr.reveal('.home__static-role',  { delay: 300 });
-  sr.reveal('.home__tech-clip',    { delay: 380 });
-  sr.reveal('.home__profession-group', { delay: 430 });
-  sr.reveal('.home__credibility',  { delay: 480 });
-  sr.reveal('.home__badge-row',    { delay: 520, origin: 'left' });
-  sr.reveal('.home__social',       { delay: 580 });
-  sr.reveal('.home__cv',           { delay: 640 });
-  sr.reveal('.home__img',          { origin: 'right', delay: 300, distance: '80px' });
-
-  // About section
-  sr.reveal('.about__img',             { origin: 'left', delay: 150, distance: '60px' });
-  sr.reveal('.about__eyebrow',         { delay: 150, origin: 'left' });
-  sr.reveal('.about__title',           { delay: 250 });
-  sr.reveal('.about__description-wrap',{ delay: 350 });
-  sr.reveal('.about__stats',           { delay: 450 });
-  sr.reveal('.about__cta',             { delay: 550, origin: 'left' });
-
-  // Section titles
-  sr.reveal('.section__title', { delay: 100 });
-
-  // Projects (old swiper cards — kept for fallback compatibility)
-  sr.reveal('.projects__card', { interval: 150 });
-
-  // Projects V2 section header
-  sr.reveal('.projects__eyebrow',         { delay: 100 });
-  sr.reveal('.projects__section-title',   { delay: 180 });
-  sr.reveal('.projects__accent-line',     { delay: 240, distance: '0px' });
-  sr.reveal('.projects__section-subtitle',{ delay: 300 });
-
-  // Skills section
-  sr.reveal('.skills__eyebrow',           { delay: 100 });
-  sr.reveal('.skills__section-title',     { delay: 180 });
-  sr.reveal('.skills__accent-line',       { delay: 240, distance: '0px' });
-  sr.reveal('.skills__section-subtitle',  { delay: 300 });
-  sr.reveal('.skills__focus-card',        { delay: 150, origin: 'right', distance: '40px' });
-  sr.reveal('.skills__stat-card',         { interval: 100, origin: 'bottom' });
-  sr.reveal('.skills__stack-title',       { delay: 100 });
-  sr.reveal('.skills__stack-line',        { delay: 160, distance: '0px' });
-  sr.reveal('.skills__chip',              { interval: 40, origin: 'bottom', distance: '20px' });
-}
-
-// Contact — Premium slide-in animations (left col from left, right col from right)
-(function () {
-  if (isMobile || !('IntersectionObserver' in window)) return;
-
-  const contactLeft = document.querySelector('.contact__left');
-  const contactRight = document.querySelector('.contact__right');
-
-  const contactColObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const el = entry.target;
-        // Slight stagger: right column appears 150ms after left
-        const delay = el === contactRight ? 150 : 0;
-        setTimeout(() => {
-          el.classList.remove('sr--hidden');
-          el.classList.add('sr--visible');
-        }, delay);
-        contactColObserver.unobserve(el);
-      }
-    });
-  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
-
-  [contactLeft, contactRight].forEach(el => {
-    if (el) {
-      el.classList.add('sr--hidden');
-      contactColObserver.observe(el);
-    }
-  });
-
-  // Platform cards: stagger reveal for full-width social row
-  const platformCards = document.querySelectorAll('.contact__platform-card');
-  const socialSection = document.querySelector('.contact__social-section');
-
-  if (platformCards.length > 0) {
-    platformCards.forEach(card => card.classList.add('sr--hidden'));
-
-    const platformObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          platformCards.forEach((card, idx) => {
-            setTimeout(() => {
-              card.classList.remove('sr--hidden');
-              card.classList.add('sr--visible');
-            }, idx * 90);
-          });
-          platformObserver.disconnect();
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
-
-    if (socialSection) platformObserver.observe(socialSection);
-  }
-}());
-
-if (!isMobile) {
-  // Keep ScrollReveal for the section header only
-  sr.reveal('.contact__header', { delay: 80, origin: 'bottom', distance: '30px' });
-  sr.reveal('.contact__social-title', { delay: 100, origin: 'bottom', distance: '20px' });
-  sr.reveal('.contact__social-accent', { delay: 160, distance: '0px' });
-
-  // CTA
-  sr.reveal('.cta__container', { origin: 'bottom', delay: 150, distance: '40px', scale: 0.95 });
-
-  // Certifications section header
-  sr.reveal('.certifications__eyebrow',          { delay: 100 });
-  sr.reveal('.certifications__section-title',    { delay: 180 });
-  sr.reveal('.certifications__accent-line',      { delay: 240, distance: '0px' });
-  sr.reveal('.certifications__section-subtitle', { delay: 300 });
-}
-
-/*=============== PARALLAX AMBIENT GLOW ON MOUSE MOVE ===============*/
-const homeBlob = document.querySelector('.home__blob-inner');
-if (homeBlob) {
    document.addEventListener('mousemove', (e) => {
-      const xRatio = (e.clientX / window.innerWidth - 0.5) * 30;
-      const yRatio = (e.clientY / window.innerHeight - 0.5) * 20;
-      homeBlob.style.transform = `translateX(calc(-50% + ${xRatio}px)) translateY(${yRatio}px)`;
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+
+      if (cursorSmall) {
+         cursorSmall.style.transform = `translate(${mouseX - 5}px, ${mouseY - 5}px)`;
+      }
+   });
+
+   function animateCursor() {
+      bigX += (mouseX - bigX) * 0.12;
+      bigY += (mouseY - bigY) * 0.12;
+
+      if (cursorBig) {
+         cursorBig.style.transform = `translate(${bigX - 15}px, ${bigY - 15}px)`;
+      }
+
+      requestAnimationFrame(animateCursor);
+   }
+
+   animateCursor();
+
+   const hoverables = document.querySelectorAll(
+      'a, button, .nav__toggle, .nav__close, .projects__card, .projects__card-v2, .projects__btn-primary, .projects__btn-secondary, .home__social-link, .certifications__card, .certifications__btn, .contact__platform-card, .contact__info-card, .contact__form-card, .contact__submit-btn'
+   );
+
+   hoverables.forEach(el => {
+      el.addEventListener('mouseenter', () => {
+         if (cursorBig) {
+            cursorBig.querySelector('circle').setAttribute('r', 20);
+            cursorBig.style.opacity = '0.35';
+            cursorBig.style.mixBlendMode = 'screen';
+         }
+      });
+
+      el.addEventListener('mouseleave', () => {
+         if (cursorBig) {
+            cursorBig.querySelector('circle').setAttribute('r', 12);
+            cursorBig.style.opacity = '1';
+            cursorBig.style.mixBlendMode = 'difference';
+         }
+      });
+   });
+
+   document.addEventListener('mouseleave', () => {
+      if (cursorBig) cursorBig.classList.add('cursor--hidden');
+      if (cursorSmall) cursorSmall.classList.add('cursor--hidden');
+   });
+
+   document.addEventListener('mouseenter', () => {
+      if (cursorBig) cursorBig.classList.remove('cursor--hidden');
+      if (cursorSmall) cursorSmall.classList.remove('cursor--hidden');
    });
 }
 
-/*=============== MICRO-INTERACTION: MAGNETIC BUTTONS ===============*/
-const magneticBtns = document.querySelectorAll('.button, .home__social-link');
 
-magneticBtns.forEach(btn => {
-   btn.addEventListener('mousemove', (e) => {
-      const rect = btn.getBoundingClientRect();
-      const x = e.clientX - rect.left - rect.width / 2;
-      const y = e.clientY - rect.top - rect.height / 2;
-      btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px) translateY(-3px)`;
+/*=============== SCROLL REVEAL ANIMATION (desktop only) ===============*/
+if (!skipAnimations) {
+   const sr = ScrollReveal({
+      origin: 'bottom',
+      distance: '50px',
+      duration: 1100,
+      delay: 150,
+      reset: false,
+      mobile: false,
+      easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
    });
 
-   btn.addEventListener('mouseleave', () => {
-      btn.style.transform = '';
+   // Home section
+   sr.reveal('.home__greeting',     { delay: 100, origin: 'left' });
+   sr.reveal('.home__name',         { delay: 200 });
+   sr.reveal('.home__static-role',  { delay: 300 });
+   sr.reveal('.home__tech-clip',    { delay: 380 });
+   sr.reveal('.home__profession-group', { delay: 430 });
+   sr.reveal('.home__credibility',  { delay: 480 });
+   sr.reveal('.home__badge-row',    { delay: 520, origin: 'left' });
+   sr.reveal('.home__social',       { delay: 580 });
+   sr.reveal('.home__cv',           { delay: 640 });
+   sr.reveal('.home__img',          { origin: 'right', delay: 300, distance: '80px' });
+
+   // About section
+   sr.reveal('.about__img',             { origin: 'left', delay: 150, distance: '60px' });
+   sr.reveal('.about__eyebrow',         { delay: 150, origin: 'left' });
+   sr.reveal('.about__title',           { delay: 250 });
+   sr.reveal('.about__description-wrap',{ delay: 350 });
+   sr.reveal('.about__stats',           { delay: 450 });
+   sr.reveal('.about__cta',             { delay: 550, origin: 'left' });
+
+   // Section titles
+   sr.reveal('.section__title', { delay: 100 });
+
+   // Projects (old swiper cards — kept for fallback compatibility)
+   sr.reveal('.projects__card', { interval: 150 });
+
+   // Projects V2 section header
+   sr.reveal('.projects__eyebrow',         { delay: 100 });
+   sr.reveal('.projects__section-title',   { delay: 180 });
+   sr.reveal('.projects__accent-line',     { delay: 240, distance: '0px' });
+   sr.reveal('.projects__section-subtitle',{ delay: 300 });
+
+   // Skills section
+   sr.reveal('.skills__eyebrow',           { delay: 100 });
+   sr.reveal('.skills__section-title',     { delay: 180 });
+   sr.reveal('.skills__accent-line',       { delay: 240, distance: '0px' });
+   sr.reveal('.skills__section-subtitle',  { delay: 300 });
+   sr.reveal('.skills__focus-card',        { delay: 150, origin: 'right', distance: '40px' });
+   sr.reveal('.skills__stat-card',         { interval: 100, origin: 'bottom' });
+   sr.reveal('.skills__stack-title',       { delay: 100 });
+   sr.reveal('.skills__stack-line',        { delay: 160, distance: '0px' });
+   sr.reveal('.skills__chip',              { interval: 40, origin: 'bottom', distance: '20px' });
+
+   // Contact — Premium slide-in animations (left col from left, right col from right)
+   (function () {
+      if (!('IntersectionObserver' in window)) return;
+
+      const contactLeft = document.querySelector('.contact__left');
+      const contactRight = document.querySelector('.contact__right');
+
+      const contactColObserver = new IntersectionObserver((entries) => {
+         entries.forEach(entry => {
+            if (entry.isIntersecting) {
+               const el = entry.target;
+               const delay = el === contactRight ? 150 : 0;
+               setTimeout(() => {
+                  el.classList.remove('sr--hidden');
+                  el.classList.add('sr--visible');
+               }, delay);
+               contactColObserver.unobserve(el);
+            }
+         });
+      }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+      [contactLeft, contactRight].forEach(el => {
+         if (el) {
+            el.classList.add('sr--hidden');
+            contactColObserver.observe(el);
+         }
+      });
+
+      // Platform cards: stagger reveal for full-width social row
+      const platformCards = document.querySelectorAll('.contact__platform-card');
+      const socialSection = document.querySelector('.contact__social-section');
+
+      if (platformCards.length > 0) {
+         platformCards.forEach(card => card.classList.add('sr--hidden'));
+
+         const platformObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+               if (entry.isIntersecting) {
+                  platformCards.forEach((card, idx) => {
+                     setTimeout(() => {
+                        card.classList.remove('sr--hidden');
+                        card.classList.add('sr--visible');
+                     }, idx * 90);
+                  });
+                  platformObserver.disconnect();
+               }
+            });
+         }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+
+         if (socialSection) platformObserver.observe(socialSection);
+      }
+   }());
+
+   // Keep ScrollReveal for the section header only
+   sr.reveal('.contact__header', { delay: 80, origin: 'bottom', distance: '30px' });
+   sr.reveal('.contact__social-title', { delay: 100, origin: 'bottom', distance: '20px' });
+   sr.reveal('.contact__social-accent', { delay: 160, distance: '0px' });
+
+   // CTA
+   sr.reveal('.cta__container', { origin: 'bottom', delay: 150, distance: '40px', scale: 0.95 });
+
+   // Certifications section header
+   sr.reveal('.certifications__eyebrow',          { delay: 100 });
+   sr.reveal('.certifications__section-title',    { delay: 180 });
+   sr.reveal('.certifications__accent-line',      { delay: 240, distance: '0px' });
+   sr.reveal('.certifications__section-subtitle', { delay: 300 });
+}
+
+
+/*=============== PARALLAX AMBIENT GLOW ON MOUSE MOVE (desktop only) ===============*/
+if (!isTouchDevice) {
+   const homeBlob = document.querySelector('.home__blob-inner');
+   if (homeBlob) {
+      document.addEventListener('mousemove', (e) => {
+         const xRatio = (e.clientX / window.innerWidth - 0.5) * 30;
+         const yRatio = (e.clientY / window.innerHeight - 0.5) * 20;
+         homeBlob.style.transform = `translateX(calc(-50% + ${xRatio}px)) translateY(${yRatio}px)`;
+      });
+   }
+}
+
+
+/*=============== MICRO-INTERACTION: MAGNETIC BUTTONS (desktop only) ===============*/
+if (!isTouchDevice) {
+   const magneticBtns = document.querySelectorAll('.button, .home__social-link');
+
+   magneticBtns.forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+         const rect = btn.getBoundingClientRect();
+         const x = e.clientX - rect.left - rect.width / 2;
+         const y = e.clientY - rect.top - rect.height / 2;
+         btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px) translateY(-3px)`;
+      });
+
+      btn.addEventListener('mouseleave', () => {
+         btn.style.transform = '';
+      });
    });
-});
+}
+
 
 /*=============== SCROLL PROGRESS INDICATOR ===============*/
 const progressBar = document.createElement('div');
@@ -484,9 +577,9 @@ document.body.appendChild(progressBar);
 window.addEventListener('scroll', () => {
    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-   const progress = (scrollTop / scrollHeight) * 100;
+   const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
    progressBar.style.width = progress + '%';
-});
+}, { passive: true });
 
 
 /*=============== EMAIL JS INTEGRATION ===============*/

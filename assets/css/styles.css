@@ -72,8 +72,10 @@
 
 html {
   scroll-behavior: smooth;
+  /* Sections have built-in top padding; just clear the fixed header */
   scroll-padding-top: var(--header-height);
 }
+
 
 body,
 button {
@@ -4258,5 +4260,248 @@ a.contact__info-text:hover {
 
   .footer__bottom .footer__copy::after {
     display: none;
+  }
+}
+
+/* ================================================
+   MOBILE PERFORMANCE OPTIMIZATIONS (< 768px)
+   ================================================
+   Goal: zero lag, instant render, smooth scrolling.
+   All animations, transitions, parallax, backdrop-filter,
+   and scroll-reveal effects are stripped on mobile.
+   Desktop experience is completely unaffected.
+   ================================================ */
+@media screen and (max-width: 767px) {
+
+  /* ---- Scroll anchor: just clear the fixed header ---- */
+  html {
+    scroll-padding-top: var(--header-height);
+  }
+
+  /* ---- Kill ALL CSS animations ---- */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    transition-delay: 0ms !important;
+  }
+
+  /* ---- Remove heavy backdrop-filter (GPU cost) ---- */
+  .nav__menu,
+  .projects__card-v2,
+  .skills__card,
+  .skills__focus-card,
+  .skills__stat-card,
+  .skills__chip,
+  .certifications__card,
+  .contact__info-card,
+  .contact__form-card,
+  .contact__platform-card,
+  .contact__social-btn,
+  .contact__form-input,
+  .home__badge,
+  .home__social-link,
+  .projects__card-domain,
+  .projects__card-status,
+  .projects__btn-secondary {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  /* ---- Disable parallax/glow blob animations ---- */
+  .home__blob-inner,
+  .home__blob-inner::before,
+  .home__blob::before,
+  .home__image::before,
+  .skills__bg-glow,
+  .certifications__bg-glow,
+  .contact__bg-glow {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  /* ---- Disable tech ticker animation — show first item statically ---- */
+  .home__tech-clip {
+    height: auto;
+    overflow: visible;
+  }
+
+  .home__tech-word {
+    animation: none !important;
+    position: static !important;
+    opacity: 0 !important;
+    transform: none !important;
+    display: none !important;
+  }
+
+  /* Show only the first tech word statically */
+  .home__tech-word:first-child {
+    display: block !important;
+    opacity: 1 !important;
+    transform: none !important;
+    white-space: normal;
+  }
+
+  /* ---- Disable scroll-reveal hidden states — content always visible ---- */
+  .projects__card-v2.sr--hidden,
+  .skills__card.sr--hidden,
+  .certifications__card.sr--hidden,
+  .contact__left.sr--hidden,
+  .contact__right.sr--hidden,
+  .contact__platform-card.sr--hidden,
+  .contact__social-btn.sr--hidden,
+  .contact__social-section.sr--hidden {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  /* ---- Disable hover card transforms (no hover on touch anyway) ---- */
+  .projects__card-v2:hover,
+  .skills__card:hover,
+  .certifications__card:hover,
+  .contact__info-card:hover,
+  .contact__form-card:hover,
+  .contact__platform-card:hover,
+  .about__stat:hover {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  /* ---- Disable home image glow animation ---- */
+  .home__img {
+    filter: none;
+    transition: none;
+  }
+
+  .home__img:hover {
+    filter: none;
+    transform: none;
+  }
+
+  /* ---- Disable imageGlow keyframe ---- */
+  .home__image::before {
+    display: none;
+  }
+
+  /* ---- Disable status dot pulse ---- */
+  .contact__status-dot {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* ---- Disable stagger transition-delays on cards ---- */
+  .projects__card-v2:nth-child(1),
+  .projects__card-v2:nth-child(2),
+  .projects__card-v2:nth-child(3),
+  .projects__card-v2:nth-child(4),
+  .skills__card:nth-child(1),
+  .skills__card:nth-child(2),
+  .skills__card:nth-child(3),
+  .skills__card:nth-child(4),
+  .skills__card:nth-child(5),
+  .skills__card:nth-child(6),
+  .certifications__card:nth-child(1),
+  .certifications__card:nth-child(2),
+  .certifications__card:nth-child(3),
+  .certifications__card:nth-child(4),
+  .contact__platform-card:nth-child(1),
+  .contact__platform-card:nth-child(2),
+  .contact__platform-card:nth-child(3),
+  .contact__platform-card:nth-child(4) {
+    transition-delay: 0ms !important;
+  }
+
+  /* ---- Ensure section padding is mobile-friendly ---- */
+  .section {
+    padding-block: 3.5rem 1.5rem;
+  }
+
+  /* ---- Ensure home section top padding accounts for fixed header ---- */
+  .home {
+    padding-top: calc(var(--header-height) + 1.5rem);
+    min-height: 100svh;
+  }
+
+  /* ---- Noise overlay: reduce opacity to save compositing cost ---- */
+  body::before {
+    opacity: 0.015;
+  }
+
+  /* ---- Skills stat numbers: show final value immediately ---- */
+  .skills__stat-number[data-target] {
+    /* JS handles this — CSS just ensures no animation flash */
+  }
+
+  /* ---- Nav menu: faster open/close (no heavy transition) ---- */
+  .nav__menu {
+    transition: top 0.2s ease, opacity 0.2s ease !important;
+  }
+
+  /* ---- Cursor: ensure completely hidden on mobile ---- */
+  .cursor__ball {
+    display: none !important;
+  }
+
+  /* ---- Remove noise overlay on mobile for performance ---- */
+  body::before {
+    display: none;
+  }
+
+  /* ---- Will-change: remove costly GPU hints on mobile ---- */
+  .home__tech-word {
+    will-change: auto !important;
+  }
+
+  /* ---- Certifications badge: no transform on hover ---- */
+  .certifications__card:hover .certifications__badge-img {
+    transform: none !important;
+    filter: drop-shadow(0 6px 20px hsla(var(--hue), 70%, 50%, 0.45))
+            drop-shadow(0 2px 6px hsla(var(--hue), 60%, 30%, 0.25)) !important;
+  }
+
+  /* ---- Projects card img: no scale on hover ---- */
+  .projects__card-v2:hover .projects__card-img {
+    transform: none !important;
+    filter: brightness(0.92) saturate(0.95) !important;
+  }
+
+  /* ---- Scroll progress bar: lighter on mobile ---- */
+  /* (handled in JS) */
+
+  /* ---- Section top gaps: tighter on mobile ---- */
+  .about {
+    padding-block: 3.5rem 2rem;
+  }
+
+  .projects {
+    padding-block: 3.5rem 2rem;
+  }
+
+  .skills {
+    padding-block: 3.5rem 2rem;
+  }
+
+  .certifications {
+    padding-block: 3.5rem 2rem;
+  }
+
+  .contact {
+    padding-block: 3.5rem 2rem;
+  }
+
+  /* ---- Platform card cursor: pointer on mobile ---- */
+  .contact__platform-card {
+    cursor: pointer;
+  }
+
+  /* ---- Projects buttons: pointer on mobile ---- */
+  .projects__btn-primary,
+  .projects__btn-secondary {
+    cursor: pointer;
   }
 }
