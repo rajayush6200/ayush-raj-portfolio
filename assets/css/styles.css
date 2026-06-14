@@ -72,8 +72,8 @@
 
 html {
   scroll-behavior: smooth;
-  /* Sections have built-in top padding; just clear the fixed header */
-  scroll-padding-top: var(--header-height);
+  /* Offset native anchor scrolls so content clears the fixed header + breathing room */
+  scroll-padding-top: calc(var(--header-height) + 2.5rem);
 }
 
 
@@ -128,7 +128,8 @@ img {
 }
 
 .section {
-  padding-block: 4rem 1.5rem;
+  /* Generous top spacing so section headings never hug the navbar */
+  padding-block: 5rem 2rem;
 }
 
 .section__title {
@@ -656,7 +657,7 @@ body::before {
 /*=============== PROJECTS ===============*/
 .projects {
   position: relative;
-  padding-block: 2.5rem 4rem;
+  padding-block: 5rem 4rem;
 
 }
 
@@ -1234,7 +1235,7 @@ body::before {
 @media screen and (max-width: 767px) {
 
   .projects {
-    padding-block: 2rem 3rem;
+    padding-block: 5rem 3rem;
   }
 }
 
@@ -1383,11 +1384,10 @@ body::before {
 .about {
   background: linear-gradient(180deg, var(--body-color) 0%, var(--container-color) 100%);
   position: relative;
-  /* Section min-height optimization to naturally shift center point upwards */
   min-height: auto;
   display: flex;
   align-items: center;
-  padding-block: 2rem 4rem;
+  padding-block: 5rem 4rem;
 
 }
 
@@ -1764,7 +1764,7 @@ body::before {
 /* ---- Section wrapper ---- */
 .skills {
   position: relative;
-  padding-block: 2.5rem 3.5rem;
+  padding-block: 5rem 3.5rem;
   overflow: hidden;
 
 }
@@ -2336,7 +2336,7 @@ body::before {
 /* Large desktop */
 @media screen and (min-width: 1150px) {
   .skills {
-    padding-block: 2.5rem 4rem;
+    padding-block: 7rem 4rem;
   }
 
   .skills__section-title {
@@ -2359,7 +2359,7 @@ body::before {
 /* ---- Section wrapper ---- */
 .certifications {
   position: relative;
-  padding-block: 2.5rem 4rem;
+  padding-block: 5rem 4rem;
   overflow: hidden;
 
 }
@@ -2865,7 +2865,7 @@ body::before {
 /* Desktop (≥1150px) */
 @media screen and (min-width: 1150px) {
   .certifications {
-    padding-block: 2.5rem 5rem;
+    padding-block: 7rem 5rem;
   }
 
   .certifications__header {
@@ -3033,7 +3033,8 @@ body::before {
 /* For large devices */
 @media screen and (min-width: 1024px) {
   .section {
-    padding-block: 6rem 2rem;
+    /* Premium desktop spacing — content lands well below the fixed navbar */
+    padding-block: 7rem 2.5rem;
   }
 
   .section__title {
@@ -3163,7 +3164,7 @@ body::before {
 /*=============== CONTACT SECTION ===============*/
 .contact {
   position: relative;
-  padding-block: 2.5rem 4rem;
+  padding-block: 5rem 4rem;
   overflow: hidden;
 
 }
@@ -4418,7 +4419,7 @@ a.contact__info-text:hover {
 
   /* ---- Ensure section padding is mobile-friendly ---- */
   .section {
-    padding-block: 3.5rem 1.5rem;
+    padding-block: 5rem 1.5rem;
   }
 
   /* ---- Ensure home section top padding accounts for fixed header ---- */
@@ -4473,25 +4474,25 @@ a.contact__info-text:hover {
   /* ---- Scroll progress bar: lighter on mobile ---- */
   /* (handled in JS) */
 
-  /* ---- Section top gaps: tighter on mobile ---- */
+  /* ---- Section top gaps: consistent mobile spacing ---- */
   .about {
-    padding-block: 3.5rem 2rem;
+    padding-block: 5rem 2rem;
   }
 
   .projects {
-    padding-block: 3.5rem 2rem;
+    padding-block: 5rem 2rem;
   }
 
   .skills {
-    padding-block: 3.5rem 2rem;
+    padding-block: 5rem 2rem;
   }
 
   .certifications {
-    padding-block: 3.5rem 2rem;
+    padding-block: 5rem 2rem;
   }
 
   .contact {
-    padding-block: 3.5rem 2rem;
+    padding-block: 5rem 2rem;
   }
 
   /* ---- Platform card cursor: pointer on mobile ---- */

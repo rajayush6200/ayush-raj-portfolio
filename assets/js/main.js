@@ -110,8 +110,8 @@ function scrollToSection(targetId) {
       el => !el.hasAttribute('aria-hidden')
    ) || target;
 
-   // 24px breathing room so the header bar doesn't clip the content
-   const BREATHING = 24;
+   // 40px breathing room — section eyebrow/title lands visibly below the fixed header
+   const BREATHING = 40;
    const top = firstVisible.getBoundingClientRect().top
                + window.scrollY
                - getHeaderHeight()
