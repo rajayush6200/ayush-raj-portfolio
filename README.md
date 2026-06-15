@@ -235,7 +235,7 @@ Domain     : ayushraj-dev.netlify.app
 > *Fully responsive layout optimized for performance and instant render on mobile*
 
 <div align="center">
-<img src="assets/img/screenshot-mobile.png" alt="Mobile View" width="40%"/>
+<img src="assets/img/screenshot-mobile.jpg" alt="Mobile View" width="40%"/>
 </div>
 
 </details>
